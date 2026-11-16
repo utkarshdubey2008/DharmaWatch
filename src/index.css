@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-page: #FFFFFF;
+    --bg-surface: #FAFAFA;
+    --text-primary: #09090B;
+    --text-secondary: #52525B;
+    --text-muted: #71717A;
+    --border-subtle: #E4E4E7;
+    --border-strong: #D4D4D8;
+    --brand-red: #DC2626;
+    --brand-red-bright: #EF4444;
+  }
+
+  .dark {
+    --bg-page: #050505;
+    --bg-surface: #0E0E11;
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
+    --border-subtle: #222226;
+    --border-strong: #33333B;
+    --brand-red: #DC2626;
+    --brand-red-bright: #EF4444;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    touch-action: pan-y;
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #111827;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  /* Discipline 6: Typography purity - headings are always upright roman */
+  h1, h2, h3, h4, h5, h6 {
+    font-style: normal !important;
+  }
+}
+
+/* Simple typography across headlines and editorial text */
+.font-headline,
+.font-newsreader,
+.font-display {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.015em;
+  font-style: normal;
+}
+
+.font-source-serif,
+.font-body,
+.font-ui {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.article-deck {
+  font-family: 'Source Serif 4', Georgia, serif;
+  letter-spacing: -0.01em;
+  line-height: 1.55;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Minimalist razor-thin newspaper dividers */
+.news-border-b {
+  border-bottom: 1px solid var(--border-subtle);
+}
+.news-border-t {
+  border-top: 1px solid var(--border-subtle);
+}
+.news-border-r {
+  border-right: 1px solid var(--border-subtle);
+}
+.news-border-l {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Monospace docket tag */
+.badge-docket {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Reader font adjustments */
+.reader-size-sm {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.reader-size-md {
+  font-size: 1.18rem;
+  line-height: 1.82;
+}
+.reader-size-lg {
+  font-size: 1.32rem;
+  line-height: 1.88;
+}
+
+/* Clean pull quotes for serious editorial reading */
+.news-quote {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  position: relative;
+}
+
+/* Sleek minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}
+
+/* Print styling */
+@media print {
+  header, footer, nav, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}

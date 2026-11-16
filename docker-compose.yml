@@ -1,0 +1,24 @@
+services:
+  dharmawatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dharmawatch:latest
+    container_name: dharmawatch
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${PORT:-3006}:${PORT:-3006}"
+    environment:
+      - PORT=${PORT:-3006}
+      - NODE_ENV=${NODE_ENV:-production}
+      - JWT_SECRET=${JWT_SECRET:-dharmawatch-super-secret-key-2026-prod}
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - ADMIN_TELEGRAM_IDS=${ADMIN_TELEGRAM_IDS:-}
+      - ADMIN_TELEGRAM_USERNAMES=${ADMIN_TELEGRAM_USERNAMES:-}
+      - PUBLIC_DOMAIN=${PUBLIC_DOMAIN:-https://thedharmawatch.in}
+      - SITE_URL=${SITE_URL:-https://thedharmawatch.in}
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./server:/app/server

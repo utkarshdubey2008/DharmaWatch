@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+.github
+.env
+.pm2
+*.log
+.DS_Store
