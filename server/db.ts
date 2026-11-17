@@ -375,81 +375,84 @@ function seedInitialData() {
     );
   }
 
-  // 5. Seed Articles from ARTICLES
-  const insertArticle = db.prepare(`
-    INSERT OR IGNORE INTO articles (
-      id, title, slug, deck, category, category_slug, subcategory,
-      author_id, published_at, updated_at, scheduled_at, excerpt,
-      hero_image, image_caption, content, pull_quotes, tags, status,
-      article_type, location, is_investigation, is_lead, is_breaking,
-      is_opinion, is_fact_check, read_time_minutes, evidence_summary,
-      seo_title, seo_meta_description, views_count, created_by, created_at
-    ) VALUES (
-      ?, ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, NULL, ?,
-      ?, ?, ?, ?, ?, ?,
-      ?, ?, ?, ?, ?,
-      ?, ?, ?, ?,
-      ?, ?, 0, 'admin', ?
-    )
-  `);
+  // 5. Seed Articles from ARTICLES (only if empty)
+  const articleCount = db.prepare('SELECT COUNT(*) as count FROM articles').get() as { count: number };
+  if (articleCount.count === 0) {
+    const insertArticle = db.prepare(`
+      INSERT OR IGNORE INTO articles (
+        id, title, slug, deck, category, category_slug, subcategory,
+        author_id, published_at, updated_at, scheduled_at, excerpt,
+        hero_image, image_caption, content, pull_quotes, tags, status,
+        article_type, location, is_investigation, is_lead, is_breaking,
+        is_opinion, is_fact_check, read_time_minutes, evidence_summary,
+        seo_title, seo_meta_description, views_count, created_by, created_at
+      ) VALUES (
+        ?, ?, ?, ?, ?, ?, ?,
+        ?, ?, ?, NULL, ?,
+        ?, ?, ?, ?, ?, ?,
+        ?, ?, ?, ?, ?,
+        ?, ?, ?, ?,
+        ?, ?, 0, 'admin', ?
+      )
+    `);
 
-  const insertArticleSource = db.prepare(`
-    INSERT OR IGNORE INTO article_sources (
-      id, article_id, source_id, sort_order
-    ) VALUES (?, ?, ?, ?)
-  `);
+    const insertArticleSource = db.prepare(`
+      INSERT OR IGNORE INTO article_sources (
+        id, article_id, source_id, sort_order
+      ) VALUES (?, ?, ?, ?)
+    `);
 
-  for (const art of ARTICLES) {
-    const contentStr = Array.isArray(art.content) ? JSON.stringify(art.content) : JSON.stringify([art.content || '']);
-    const pullQuotesStr = Array.isArray(art.pullQuotes) ? JSON.stringify(art.pullQuotes) : JSON.stringify([]);
-    const tagsStr = Array.isArray(art.tags) ? JSON.stringify(art.tags) : JSON.stringify([]);
-    const locStr = typeof art.location === 'object' ? JSON.stringify(art.location) : JSON.stringify({ country: 'India' });
-    const evStr = art.evidenceSummary ? JSON.stringify(art.evidenceSummary) : null;
-    const authorId = art.author?.id || 'usr-reporter-1';
-    const artType = art.isInvestigation ? 'investigation' : (art.isBreaking ? 'breaking' : (art.isOpinion || art.categorySlug === 'opinions' ? 'opinion' : 'news'));
-    const pubAt = art.publishedAt || now;
+    for (const art of ARTICLES) {
+      const contentStr = Array.isArray(art.content) ? JSON.stringify(art.content) : JSON.stringify([art.content || '']);
+      const pullQuotesStr = Array.isArray(art.pullQuotes) ? JSON.stringify(art.pullQuotes) : JSON.stringify([]);
+      const tagsStr = Array.isArray(art.tags) ? JSON.stringify(art.tags) : JSON.stringify([]);
+      const locStr = typeof art.location === 'object' ? JSON.stringify(art.location) : JSON.stringify({ country: 'India' });
+      const evStr = art.evidenceSummary ? JSON.stringify(art.evidenceSummary) : null;
+      const authorId = art.author?.id || 'usr-reporter-1';
+      const artType = art.isInvestigation ? 'investigation' : (art.isBreaking ? 'breaking' : (art.isOpinion || art.categorySlug === 'opinions' ? 'opinion' : 'news'));
+      const pubAt = art.publishedAt || now;
 
-    insertArticle.run(
-      art.id,
-      art.title,
-      art.slug,
-      art.deck || art.excerpt || '',
-      art.category || 'News',
-      art.categorySlug || 'india',
-      art.subcategory || null,
-      authorId,
-      pubAt,
-      art.updatedAt || pubAt,
-      art.excerpt || art.deck || art.title,
-      art.heroImage || '',
-      art.imageCaption || '',
-      contentStr,
-      pullQuotesStr,
-      tagsStr,
-      'published',
-      artType,
-      locStr,
-      art.isInvestigation ? 1 : 0,
-      art.isLead ? 1 : 0,
-      art.isBreaking ? 1 : 0,
-      art.isOpinion || art.categorySlug === 'opinions' ? 1 : 0,
-      art.isFactCheck || art.categorySlug === 'fact-check' ? 1 : 0,
-      art.readTimeMinutes || 4,
-      evStr,
-      art.title,
-      art.excerpt || art.deck || '',
-      pubAt
-    );
+      insertArticle.run(
+        art.id,
+        art.title,
+        art.slug,
+        art.deck || art.excerpt || '',
+        art.category || 'News',
+        art.categorySlug || 'india',
+        art.subcategory || null,
+        authorId,
+        pubAt,
+        art.updatedAt || pubAt,
+        art.excerpt || art.deck || art.title,
+        art.heroImage || '',
+        art.imageCaption || '',
+        contentStr,
+        pullQuotesStr,
+        tagsStr,
+        'published',
+        artType,
+        locStr,
+        art.isInvestigation ? 1 : 0,
+        art.isLead ? 1 : 0,
+        art.isBreaking ? 1 : 0,
+        art.isOpinion || art.categorySlug === 'opinions' ? 1 : 0,
+        art.isFactCheck || art.categorySlug === 'fact-check' ? 1 : 0,
+        art.readTimeMinutes || 4,
+        evStr,
+        art.title,
+        art.excerpt || art.deck || '',
+        pubAt
+      );
 
-    if (Array.isArray(art.sources)) {
-      art.sources.forEach((s, sIdx) => {
-        if (s && s.id) {
-          try {
-            insertArticleSource.run(`as-${art.id}-${s.id}`, art.id, s.id, sIdx);
-          } catch (e) {}
-        }
-      });
+      if (Array.isArray(art.sources)) {
+        art.sources.forEach((s, sIdx) => {
+          if (s && s.id) {
+            try {
+              insertArticleSource.run(`as-${art.id}-${s.id}`, art.id, s.id, sIdx);
+            } catch (e) {}
+          }
+        });
+      }
     }
   }
 
