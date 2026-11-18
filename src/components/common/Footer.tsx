@@ -107,15 +107,40 @@ export const Footer: React.FC = () => {
             <h3 className="text-xs font-bold uppercase tracking-wider text-gray-300 pb-2 border-b border-gray-800">
               Charter &amp; Ethics
             </h3>
-            <ul className="space-y-2 text-xs font-medium text-gray-400">
+            <ul className="space-y-1.5 text-xs font-medium text-gray-400">
               <li>
                 <Link to="/about" className="hover:text-white transition-colors">
-                  About DharmaWatch
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/publication" className="hover:text-white transition-colors">
+                  Publication Overview
+                </Link>
+              </li>
+              <li>
+                <Link to="/ownership-and-funding" className="hover:text-white transition-colors">
+                  Ownership &amp; Funding
+                </Link>
+              </li>
+              <li>
+                <Link to="/standards" className="hover:text-white transition-colors">
+                  Our Standards
+                </Link>
+              </li>
+              <li>
+                <Link to="/editorial" className="hover:text-white transition-colors">
+                  Editorial Charter
                 </Link>
               </li>
               <li>
                 <Link to="/editorial-policy" className="hover:text-white transition-colors">
-                  Editorial Standards
+                  Editorial Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/fact-checking" className="hover:text-white transition-colors">
+                  Fact-Checking
                 </Link>
               </li>
               <li>
@@ -124,13 +149,13 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/case-files" className="hover:text-white transition-colors">
-                  Judicial Case Files
+                <Link to="/sources-and-attribution" className="hover:text-white transition-colors">
+                  Sources &amp; Attribution
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-white transition-colors">
-                  Contact Newsroom
+                  Contact Us
                 </Link>
               </li>
             </ul>

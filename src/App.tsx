@@ -12,8 +12,14 @@ import { ArchivePage } from './pages/ArchivePage';
 import { SearchPage } from './pages/SearchPage';
 import { DataPage } from './pages/DataPage';
 import { AboutPage } from './pages/AboutPage';
+import { PublicationHubPage } from './pages/PublicationHubPage';
+import { OwnershipFundingPage } from './pages/OwnershipFundingPage';
+import { StandardsHubPage } from './pages/StandardsHubPage';
+import { EditorialPage } from './pages/EditorialPage';
 import { EditorialPolicyPage } from './pages/EditorialPolicyPage';
+import { FactCheckingPage } from './pages/FactCheckingPage';
 import { CorrectionsPage } from './pages/CorrectionsPage';
+import { SourcesAttributionPage } from './pages/SourcesAttributionPage';
 import { AuthorPage } from './pages/AuthorPage';
 import { ContactPage } from './pages/ContactPage';
 import { PostStoryPage } from './pages/PostStoryPage';
@@ -98,10 +104,32 @@ export const App: React.FC = () => {
               <Route path="data" element={<DataPage />} />
 
               {/* Governance, Institutional & Transparency */}
+              <Route path="publication" element={<PublicationHubPage />} />
               <Route path="about" element={<AboutPage />} />
+              <Route path="about-us" element={<AboutPage />} />
+              <Route path="publication/about" element={<AboutPage />} />
+              <Route path="ownership-and-funding" element={<OwnershipFundingPage />} />
+              <Route path="ownership" element={<OwnershipFundingPage />} />
+              <Route path="publication/ownership" element={<OwnershipFundingPage />} />
+              
+              {/* Standards, Charters & Verification Protocols */}
+              <Route path="standards" element={<StandardsHubPage />} />
+              <Route path="our-standards" element={<StandardsHubPage />} />
+              <Route path="editorial" element={<EditorialPage />} />
+              <Route path="standards/editorial" element={<EditorialPage />} />
               <Route path="editorial-policy" element={<EditorialPolicyPage />} />
+              <Route path="standards/editorial-policy" element={<EditorialPolicyPage />} />
+              <Route path="fact-checking" element={<FactCheckingPage />} />
+              <Route path="standards/fact-checking" element={<FactCheckingPage />} />
               <Route path="corrections" element={<CorrectionsPage />} />
+              <Route path="standards/corrections" element={<CorrectionsPage />} />
+              <Route path="sources-and-attribution" element={<SourcesAttributionPage />} />
+              <Route path="sources" element={<SourcesAttributionPage />} />
+              <Route path="standards/sources" element={<SourcesAttributionPage />} />
+
               <Route path="contact" element={<ContactPage />} />
+              <Route path="contact-us" element={<ContactPage />} />
+              <Route path="publication/contact" element={<ContactPage />} />
               <Route path="tips" element={<ContactPage />} />
               <Route path="submit-tip" element={<ContactPage />} />
               <Route path="authors/:slug" element={<AuthorPage />} />

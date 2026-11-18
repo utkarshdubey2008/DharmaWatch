@@ -87,14 +87,17 @@ export const EditorialPolicyPage: React.FC = () => {
           <span>Spot an Inaccuracy in Our Reporting?</span>
         </h3>
         <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-          If you believe a factual assertion in any DharmaWatch report is inaccurate or outdated, please submit a formal correction request with supporting primary documents to our editorial standards desk.
+          If you believe a factual assertion in any DharmaWatch report is inaccurate or outdated, please submit a formal correction request with supporting primary documents to our editorial standards desk at <strong className="text-gray-900 font-mono">corrections@thedharmawatch.in</strong>.
         </p>
         <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-wider">
-          <Link to="/corrections" className="text-amber-600 hover:text-amber-700">
+          <Link to="/corrections" className="text-amber-700 hover:text-amber-900">
             View Public Corrections Ledger →
           </Link>
-          <Link to="/contact" className="text-gray-900 hover:text-black">
-            Submit Correction Request →
+          <Link to="/sources-and-attribution" className="text-gray-900 hover:text-black">
+            Sources &amp; Attribution Protocol →
+          </Link>
+          <Link to="/standards" className="text-gray-600 hover:text-gray-900">
+            All Standards &amp; Charters →
           </Link>
         </div>
       </div>

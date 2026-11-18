@@ -166,17 +166,65 @@ export const AboutPage: React.FC = () => {
 
           <div className="pt-2 flex flex-wrap gap-3">
             <Link
-              to="/editorial-policy"
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gray-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors"
+              to="/publication"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gray-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
             >
-              <span>Editorial Charter</span>
+              <span>Publication Hub</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
             <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-300 hover:border-gray-900 text-gray-900 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors bg-white"
+              to="/ownership-and-funding"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
             >
-              <span>Submit Tip</span>
+              <span>Ownership &amp; Funding</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              to="/standards"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-gray-300 hover:border-gray-900 text-gray-900 text-xs font-bold uppercase tracking-wider rounded transition-colors bg-white"
+            >
+              <span>Our Standards</span>
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-gray-300 hover:border-gray-900 text-gray-900 text-xs font-bold uppercase tracking-wider rounded transition-colors bg-white"
+            >
+              <span>Contact Newsroom</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────────────────── */}
+        {/* 5. INSTITUTIONAL POLICIES DIRECTORY                          */}
+        {/* ──────────────────────────────────────────────────────────── */}
+        <section className="space-y-3 pt-4 border-t border-gray-200">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-950">
+            Institutional Charters &amp; Governance Directory
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+            <Link to="/editorial" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Editorial Charter
+            </Link>
+            <Link to="/editorial-policy" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Editorial Policy
+            </Link>
+            <Link to="/fact-checking" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Fact-Checking
+            </Link>
+            <Link to="/corrections" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Corrections Ledger
+            </Link>
+            <Link to="/sources-and-attribution" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Sources &amp; Attribution
+            </Link>
+            <Link to="/ownership-and-funding" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Ownership &amp; Funding
+            </Link>
+            <Link to="/contact" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Contact Desks
+            </Link>
+            <Link to="/publication" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Master Directory
             </Link>
           </div>
         </section>

@@ -113,6 +113,24 @@ export const CorrectionsPage: React.FC = () => {
           })}
         </div>
       )}
+
+      {/* Navigation Footer */}
+      <div className="pt-6 border-t border-gray-200 flex flex-wrap justify-between items-center gap-3 text-xs font-bold font-sans">
+        <Link to="/standards" className="text-gray-600 hover:text-gray-900">
+          ← Back to Standards Hub
+        </Link>
+        <div className="flex gap-4">
+          <Link to="/editorial-policy" className="text-amber-700 hover:underline">
+            Editorial Policy
+          </Link>
+          <Link to="/fact-checking" className="text-amber-700 hover:underline">
+            Fact-Checking Methodology
+          </Link>
+          <Link to="/sources-and-attribution" className="text-amber-700 hover:underline">
+            Sources &amp; Attribution
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

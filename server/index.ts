@@ -326,29 +326,61 @@ function getOpenGraphMeta(req: express.Request): PageMeta {
       title: 'About Us | The Dharma Watch - The National Journal of Record',
       description: 'Why The Dharma Watch exists: An independent national daily and investigative newsroom dedicated to fearless journalism, constitutional accountability, and verified public records.',
     },
-    violence: {
-      title: 'Crime & Public Safety Watch | The Dharma Watch',
-      description: 'Investigative records, police statements, and ground documentation of crime and public safety enforcement across India.',
+    'about-us': {
+      title: 'About Us | The Dharma Watch - The National Journal of Record',
+      description: 'Why The Dharma Watch exists: An independent national daily and investigative newsroom dedicated to fearless journalism, constitutional accountability, and verified public records.',
     },
-    persecution: {
-      title: 'Civil Liberties & Rights Watch | The Dharma Watch',
-      description: 'Documenting civil liberty violations, demographic intimidation, and institutional discrimination through certified legal records.',
+    publication: {
+      title: 'Publication & Institutional Governance | The Dharma Watch',
+      description: 'Institutional overview, mission charter, newsroom desks, legal trust governance, and transparency directories of The Dharma Watch.',
     },
-    'temple-heritage': {
-      title: 'Temple Heritage & Sanctity | The Dharma Watch',
-      description: 'Ground investigations and verified reporting on temple conservation, architectural heritage, and historical preservation.',
+    'ownership-and-funding': {
+      title: 'Ownership & Financial Transparency | The Dharma Watch',
+      description: 'Public disclosures, trust ownership structure, non-profit charter, revenue breakdown, and legal editorial firewall of The Dharma Watch.',
+    },
+    ownership: {
+      title: 'Ownership & Financial Transparency | The Dharma Watch',
+      description: 'Public disclosures, trust ownership structure, non-profit charter, revenue breakdown, and legal editorial firewall of The Dharma Watch.',
+    },
+    standards: {
+      title: 'Our Standards & Code of Integrity | The Dharma Watch',
+      description: 'The six foundational pillars of our journalistic practice: constitutional fidelity, primary source supremacy, right of reply, forensic transparency, and independence.',
+    },
+    'our-standards': {
+      title: 'Our Standards & Code of Integrity | The Dharma Watch',
+      description: 'The six foundational pillars of our journalistic practice: constitutional fidelity, primary source supremacy, right of reply, forensic transparency, and independence.',
+    },
+    editorial: {
+      title: 'Editorial Independence Charter | The Dharma Watch',
+      description: 'Newsroom governance, strict firewall between business and reporting, four-tier content demarcation, and reporter conscience clause.',
     },
     'editorial-policy': {
       title: 'Editorial Charter & Evidentiary Standards | The Dharma Watch',
       description: 'Our journalistic methodology, evidence verification criteria, right of reply, and commitment to truth and independence.',
     },
+    'fact-checking': {
+      title: 'Fact-Checking & Forensic Verification | The Dharma Watch',
+      description: 'Four-stage verification methodology, digital forensics, primary source triangulation, and five-tier veracity taxonomy.',
+    },
+    'sources-and-attribution': {
+      title: 'Sources, Evidence & Attribution Charter | The Dharma Watch',
+      description: 'Evidence pyramid, certified records standard, anonymous sourcing protocol, attribution rules, and encrypted whistleblower protection.',
+    },
+    sources: {
+      title: 'Sources, Evidence & Attribution Charter | The Dharma Watch',
+      description: 'Evidence pyramid, certified records standard, anonymous sourcing protocol, attribution rules, and encrypted whistleblower protection.',
+    },
     corrections: {
       title: 'Public Corrections Log | The Dharma Watch',
-      description: 'Transparent public record of all factual corrections and editorial updates.',
+      description: 'Transparent public record of all factual corrections, clarifications, and retraction procedures.',
     },
     contact: {
-      title: 'Confidential Tip Intake | The Dharma Watch',
-      description: 'Submit verified documents, RTI disclosures, court filings, and ground video evidence securely to our reporting desk.',
+      title: 'Contact Us & Confidential Intake | The Dharma Watch',
+      description: 'Institutional headquarters, editorial desks, grievance redressal officer, and PGP-encrypted whistleblower drop.',
+    },
+    'contact-us': {
+      title: 'Contact Us & Confidential Intake | The Dharma Watch',
+      description: 'Institutional headquarters, editorial desks, grievance redressal officer, and PGP-encrypted whistleblower drop.',
     },
     archive: {
       title: 'Archive Wire & Dossiers | The Dharma Watch',

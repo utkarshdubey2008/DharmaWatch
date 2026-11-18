@@ -403,11 +403,19 @@ export const Header: React.FC = () => {
                 <div className="space-y-4">
                   <div className="border-b-2 border-gray-900 pb-2 flex items-center justify-between">
                     <h3 className="font-sans font-black text-xs uppercase tracking-wider text-gray-950">
-                      Ethics &amp; Governance
+                      Publication &amp; Standards
                     </h3>
-                    <span className="text-[10px] font-mono text-gray-400">CHARTER</span>
+                    <span className="text-[10px] font-mono text-gray-400">CHARTERS</span>
                   </div>
                   <nav className="space-y-1 text-sm font-medium">
+                    <Link
+                      to="/publication"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span className="font-bold">Publication Hub</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
                     <Link
                       to="/about"
                       onClick={() => setIsMenuOpen(false)}
@@ -417,11 +425,43 @@ export const Header: React.FC = () => {
                       <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
                     </Link>
                     <Link
-                      to="/editorial-policy"
+                      to="/ownership-and-funding"
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
                     >
-                      <span>Editorial Charter &amp; Standards</span>
+                      <span>Ownership &amp; Funding</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
+                      to="/standards"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span className="font-bold">Code of Standards</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
+                      to="/editorial"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span>Editorial Independence</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
+                      to="/fact-checking"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span>Fact-Checking Protocol</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
+                      to="/sources-and-attribution"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span>Sources &amp; Attribution</span>
                       <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
                     </Link>
                     <Link
