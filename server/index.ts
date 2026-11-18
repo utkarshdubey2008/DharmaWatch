@@ -144,11 +144,47 @@ interface PageMeta {
 }
 
 function getOpenGraphMeta(req: express.Request): PageMeta {
-  const protocol = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'http';
-  const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || `localhost:${PORT}`;
-  const baseUrl = `${protocol}://${host}`;
+  const protocol = (req.headers['x-forwarded-proto'] as string) || req.protocol || 'https';
+  const publicDomain = process.env.PUBLIC_DOMAIN || '';
+  const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || `thedharmawatch.in`;
+  const baseUrl = publicDomain ? publicDomain.replace(/\/+$/, '') : `${protocol}://${host}`;
   const fullUrl = `${baseUrl}${req.originalUrl}`;
-  const defaultImage = `${baseUrl}/dharmawatch-og.png`;
+
+  // Retrieve customizable social sharing configuration (settings DB -> env -> defaults)
+  let customOgImage = '';
+  let ogVersion = '';
+  let homeTitle = '';
+  let homeDesc = '';
+  try {
+    const rows = db.prepare("SELECT key, value FROM settings WHERE key IN ('og_image', 'og_image_version', 'og_title', 'og_description')").all() as any[];
+    for (const r of rows) {
+      if (r.key === 'og_image' && r.value) customOgImage = r.value.trim();
+      if (r.key === 'og_image_version' && r.value) ogVersion = r.value.trim();
+      if (r.key === 'og_title' && r.value) homeTitle = r.value.trim();
+      if (r.key === 'og_description' && r.value) homeDesc = r.value.trim();
+    }
+  } catch (e) {}
+
+  if (!customOgImage && process.env.OG_IMAGE_URL) {
+    customOgImage = process.env.OG_IMAGE_URL.trim();
+  }
+  if (!ogVersion && process.env.OG_IMAGE_VERSION) {
+    ogVersion = process.env.OG_IMAGE_VERSION.trim();
+  }
+  if (!customOgImage) {
+    customOgImage = '/dharmawatch-social-preview.png';
+  }
+  if (!ogVersion) {
+    ogVersion = '2.2';
+  }
+
+  let defaultImage = customOgImage;
+  if (defaultImage.startsWith('/')) {
+    defaultImage = `${baseUrl}${defaultImage}`;
+  }
+  if (!defaultImage.includes('?')) {
+    defaultImage = `${defaultImage}?v=${ogVersion}`;
+  }
 
   const rawPath = req.path.split('?')[0];
   const parts = rawPath.split('/').filter(Boolean);
@@ -334,8 +370,8 @@ function getOpenGraphMeta(req: express.Request): PageMeta {
 
   // 5. Default / Home URL
   return {
-    title: 'The Dharma Watch | Journalism of Courage · The National Journal of Record',
-    description: 'An independent broadsheet news publication and investigative journal of record. Dedicated to fearless reporting, constitutional accountability, and primary evidence verification.',
+    title: homeTitle || 'The Dharma Watch | Journalism of Courage · The National Journal of Record',
+    description: homeDesc || 'An independent national broadsheet news publication and investigative journal of record. Dedicated to fearless reporting, constitutional accountability, and primary evidence verification.',
     image: defaultImage,
     url: fullUrl,
     type: 'website',
@@ -415,7 +451,11 @@ if (fs.existsSync(distDir)) {
         const ogTags = `
     <!-- Dynamic Social Share & Open Graph Meta Tags -->
     <title>${escapedTitle}</title>
+    <meta name="title" content="${escapedTitle}" />
     <meta name="description" content="${escapedDesc}" />
+    <link rel="canonical" href="${escapedUrl}" />
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
     <meta property="og:site_name" content="The Dharma Watch" />
     <meta property="og:type" content="${meta.type}" />
     <meta property="og:url" content="${escapedUrl}" />
@@ -423,15 +463,27 @@ if (fs.existsSync(distDir)) {
     <meta property="og:description" content="${escapedDesc}" />
     <meta property="og:image" content="${escapedImg}" />
     <meta property="og:image:secure_url" content="${escapedImg}" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="${escapedTitle}" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@thedharmawatch" />
+    <meta name="twitter:creator" content="@thedharmawatch" />
+    <meta name="twitter:url" content="${escapedUrl}" />
     <meta name="twitter:title" content="${escapedTitle}" />
     <meta name="twitter:description" content="${escapedDesc}" />
     <meta name="twitter:image" content="${escapedImg}" />
-    <link rel="canonical" href="${escapedUrl}" />
+    <meta name="twitter:image:alt" content="${escapedTitle}" />
+
+    <!-- Telegram & WhatsApp Rich Preview Microdata -->
+    <meta itemprop="name" content="${escapedTitle}" />
+    <meta itemprop="description" content="${escapedDesc}" />
+    <meta itemprop="image" content="${escapedImg}" />
+    <link rel="image_src" href="${escapedImg}" />
 
     <!-- Google News, Syndication Feeds & Sitemaps -->
     <link rel="alternate" type="application/rss+xml" title="The Dharma Watch RSS Feed" href="${meta.baseUrl}/rss.xml" />
@@ -444,14 +496,22 @@ if (fs.existsSync(distDir)) {
     ${jsonLd}
         `.trim();
 
-        // Strip static title/description/og tags from build and inject dynamic tags
+        // Strip static title/description/og tags from build and inject dynamic tags at top of head
         let customizedHtml = html
           .replace(/<title>.*?<\/title>/gi, '')
+          .replace(/<meta\s+name="title"\s+content=".*?"\s*\/?>/gi, '')
           .replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/gi, '')
           .replace(/<meta\s+property="og:.*?"\s+content=".*?"\s*\/?>/gi, '')
-          .replace(/<meta\s+name="twitter:.*?"\s+content=".*?"\s*\/?>/gi, '');
+          .replace(/<meta\s+name="twitter:.*?"\s+content=".*?"\s*\/?>/gi, '')
+          .replace(/<meta\s+itemprop=".*?"\s+content=".*?"\s*\/?>/gi, '')
+          .replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/gi, '')
+          .replace(/<link\s+rel="image_src"\s+href=".*?"\s*\/?>/gi, '');
 
-        customizedHtml = customizedHtml.replace('</head>', `  ${ogTags}\n  </head>`);
+        if (customizedHtml.includes('<meta name="viewport"')) {
+          customizedHtml = customizedHtml.replace(/(<meta name="viewport"[^>]*>)/i, `$1\n    ${ogTags}`);
+        } else {
+          customizedHtml = customizedHtml.replace('<head>', `<head>\n    ${ogTags}`);
+        }
 
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
         res.send(customizedHtml);

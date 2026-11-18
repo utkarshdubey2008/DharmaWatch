@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../utils/api';
 import { useAdminAuth } from '../context/AdminAuthContext';
-import { Settings, Save, CheckCircle2, Shield, Database } from 'lucide-react';
+import { Settings, Save, CheckCircle2, Shield, Database, Share2, Image, Globe } from 'lucide-react';
 
 export const AdminSettingsPage: React.FC = () => {
   const { hasPermission } = useAdminAuth();
@@ -153,6 +153,104 @@ export const AdminSettingsPage: React.FC = () => {
               onChange={(e) => handleChange('sanskrit_mantra', e.target.value)}
               className="w-full text-xs p-2 border border-gray-300 font-serif font-bold text-dw-red"
             />
+          </div>
+        </div>
+
+        {/* Social Sharing & Link Preview (Open Graph / Telegram / WhatsApp / X) */}
+        <div className="bg-white border border-gray-200 p-6 space-y-4">
+          <div className="border-b border-gray-100 pb-2 flex items-center justify-between">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
+              <Share2 className="w-4 h-4 text-amber-600" />
+              <span>Social Sharing & Link Preview (OpenGraph / Telegram / WhatsApp / X)</span>
+            </h2>
+            <span className="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-mono">1200 × 630 px</span>
+          </div>
+
+          <p className="text-xs text-gray-500 leading-relaxed">
+            Controls the preview image, title, and description displayed when someone shares <code className="bg-gray-100 px-1 py-0.5 text-gray-700">https://thedharmawatch.in/</code> on Telegram, WhatsApp, Facebook, X (Twitter), and LinkedIn.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1 flex items-center justify-between">
+                <span>Preview Image Path or Absolute URL</span>
+                <span className="text-[10px] text-gray-400 font-mono">OG &amp; Twitter Card</span>
+              </label>
+              <input
+                type="text"
+                value={settings.og_image || '/dharmawatch-social-preview.png'}
+                onChange={(e) => handleChange('og_image', e.target.value)}
+                placeholder="/dharmawatch-social-preview.png"
+                className="w-full text-xs p-2 border border-gray-300 font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1 flex items-center justify-between">
+                <span>Cache-Bust Version Tag</span>
+                <span className="text-[10px] text-emerald-600 font-mono font-bold">Busts App Cache</span>
+              </label>
+              <input
+                type="text"
+                value={settings.og_image_version || '2.2'}
+                onChange={(e) => handleChange('og_image_version', e.target.value)}
+                placeholder="2.2"
+                className="w-full text-xs p-2 border border-gray-300 font-mono"
+              />
+              <span className="text-[10px] text-gray-400 block mt-1">Change this (e.g. 2.3) whenever you update the image to force instant reload on Telegram &amp; WhatsApp.</span>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                Social Share Title
+              </label>
+              <input
+                type="text"
+                value={settings.og_title || 'The Dharma Watch | Journalism of Courage · The National Journal of Record'}
+                onChange={(e) => handleChange('og_title', e.target.value)}
+                className="w-full text-xs p-2 border border-gray-300 font-sans"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                Social Share Description
+              </label>
+              <textarea
+                rows={2}
+                value={settings.og_description || 'An independent national broadsheet news publication and investigative journal of record. Dedicated to fearless reporting, constitutional accountability, and primary evidence verification.'}
+                onChange={(e) => handleChange('og_description', e.target.value)}
+                className="w-full text-xs p-3 border border-gray-300 font-sans leading-relaxed"
+              />
+            </div>
+          </div>
+
+          {/* Visual Card Preview */}
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wider block mb-2">Live Social Card Preview (1.91:1)</span>
+            <div className="border border-gray-200 rounded-lg overflow-hidden max-w-lg bg-gray-50 shadow-sm">
+              <div className="relative aspect-[1.91/1] bg-white border-b border-gray-200 flex items-center justify-center overflow-hidden">
+                <img
+                  src={settings.og_image || '/dharmawatch-social-preview.png'}
+                  alt="OpenGraph Preview"
+                  className="w-full h-full object-contain"
+                  onError={(e: any) => {
+                    e.target.src = '/dharmawatch-social-preview.png';
+                  }}
+                />
+              </div>
+              <div className="p-3 bg-white space-y-1">
+                <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">thedharmawatch.in</div>
+                <div className="text-xs font-bold text-gray-900 line-clamp-1">
+                  {settings.og_title || 'The Dharma Watch | Journalism of Courage · The National Journal of Record'}
+                </div>
+                <div className="text-[11px] text-gray-500 line-clamp-2 leading-relaxed">
+                  {settings.og_description || 'An independent national broadsheet news publication and investigative journal of record. Dedicated to fearless reporting, constitutional accountability, and primary evidence verification.'}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
