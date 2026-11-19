@@ -145,7 +145,7 @@ export const HomePage: React.FC = () => {
                     </p>
 
                     <div className="flex items-center justify-between pt-1 text-xs text-gray-500">
-                      <span>By <strong className="text-gray-900 font-semibold">{leadStory.author?.name || 'DharmaWatch Staff'}</strong></span>
+                      <span>By <strong className="text-gray-900 font-semibold">{leadStory.author?.name || 'The Dharma Watch'}</strong></span>
                       <div className="flex items-center gap-3">
                         <button
                           onClick={(e) => toggleBookmark(leadStory.id, e)}

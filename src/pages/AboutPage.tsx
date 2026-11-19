@@ -1,215 +1,173 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, FileText, Scale, ArrowRight, BookOpen, Globe2, Building2, TrendingUp } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { 
+  ShieldCheck, 
+  FileText, 
+  Scale, 
+  ArrowRight, 
+  BookOpen, 
+  Globe2, 
+  Building2, 
+  TrendingUp,
+  Landmark,
+  Eye,
+  CheckCircle2
+} from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
+  const breadcrumbs = [
+    { label: 'Home', path: '/' },
+    { label: 'About Us' },
+  ];
+
+  const editorialCoverage = [
+    {
+      title: 'National & International Affairs',
+      desc: 'Diplomatic engagements, foreign policy dynamics, bilateral treaties, and global geopolitical developments impacting India and South Asia.',
+      icon: Globe2,
+    },
+    {
+      title: 'Politics & Governance',
+      desc: 'Parliamentary proceedings, cabinet decisions, federal-state dynamics, administrative scrutiny, and electoral processes.',
+      icon: Building2,
+    },
+    {
+      title: 'Constitutional Accountability & Law',
+      desc: 'Supreme Court jurisprudence, High Court rulings, constitutional bench hearings, statutory oversight, and the rule of law.',
+      icon: Scale,
+    },
+    {
+      title: 'Investigative Journalism & Primary Records',
+      desc: 'In-depth investigative reports grounded in certified First Information Reports (FIRs), chargesheets, RTI disclosures, and official records.',
+      icon: FileText,
+    },
+    {
+      title: 'Violence, Persecution & Civil Liberties',
+      desc: 'Documenting incidents of communal violence, civil liberty violations, demographic intimidation, and victim statements through verifiable evidence.',
+      icon: Eye,
+    },
+    {
+      title: 'Religious Freedom, Temples & Living Heritage',
+      desc: 'Ground inquiries into religious freedom, temple governance, historical architectural preservation, sacred heritage, and cultural rights.',
+      icon: Landmark,
+    },
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-8 font-sans">
-      {/* ──────────────────────────────────────────────────────────── */}
-      {/* 1. EDITORIAL MASTHEAD BANNER (CLEAN NEWSPAPER STYLE)         */}
-      {/* ──────────────────────────────────────────────────────────── */}
-      <header className="border-b-2 border-gray-900 pb-4 space-y-2">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8 font-sans">
+      <Breadcrumbs items={breadcrumbs} className="hidden sm:flex" />
+
+      {/* Header */}
+      <header className="border-b-2 border-gray-900 pb-6 space-y-3">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-600">
-            Institutional Charter &amp; Mission
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-2.5 py-1 border border-amber-200">
+            About The Publication
           </span>
           <span className="text-gray-300">•</span>
-          <span className="text-xs text-gray-500 font-medium">New Delhi</span>
+          <span className="text-xs text-gray-500 font-mono">Independent Digital News</span>
         </div>
 
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-sans font-black tracking-tight text-gray-950 leading-tight">
-          Why DharmaWatch Exists
+        <h1 className="text-3xl sm:text-5xl font-sans font-black tracking-tight text-gray-950 leading-tight">
+          About The Dharma Watch
         </h1>
 
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-100 text-xs text-gray-500">
-          <span className="font-semibold text-gray-900">
-            DharmaWatch · Journal of Record
-          </span>
-          <span className="text-amber-700 font-serif italic">
-            सत्यमेव जयते — Truth Alone Triumphs
-          </span>
-        </div>
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-sans">
+          The Dharma Watch (DharmaWatch) is an independent digital news publication dedicated to rigorous investigative reporting, primary-source documentation, and constitutional accountability.
+        </p>
       </header>
 
-      {/* ──────────────────────────────────────────────────────────── */}
-      {/* 2. CORE EDITORIAL MANIFESTO                                  */}
-      {/* ──────────────────────────────────────────────────────────── */}
+      {/* Institutional Identity & Purpose */}
       <article className="space-y-6 text-gray-800 leading-relaxed">
-        <p className="text-base sm:text-xl font-bold text-gray-950 leading-snug border-l-3 border-amber-500 pl-3 sm:pl-4">
-          DharmaWatch was founded on a singular conviction: that a thriving, democratic India requires an uncompromising fourth estate committed to constitutional truth, verified documentation, and holding power to account without ideological bias or corporate censorship.
-        </p>
-
-        <div className="space-y-3 text-sm sm:text-base text-gray-700">
-          <p>
-            In classical Indian statecraft and philosophy, the term <strong>Dharma</strong> signifies constitutional duty, civic virtue, ethical governance, and the relentless pursuit of justice (*Satya* and *Nyaya*). As the constitutional maxim asserts—<em>Dharmo Rakshati Rakshitah</em>—the rule of law and righteousness protect those who protect them.
-          </p>
-          <p>
-            In modern democratic life, the foremost custodian of that public duty is an independent, investigative press. When governance mechanisms falter, when procurement budgets disappear into collusive cartels, when fundamental civil liberties are tested, or when public discourse is hijacked by synthetic deepfakes and partisan narratives, <strong>DharmaWatch</strong> serves as a reliable evidentiary journal of record.
+        <div className="bg-stone-50 border-l-4 border-amber-600 p-5 rounded-r space-y-2">
+          <h2 className="text-base sm:text-lg font-bold text-gray-950">
+            What DharmaWatch Is
+          </h2>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            The Dharma Watch is an independent digital news publication, comparable in format and ambition to established Indian broadsheet newspapers. It is not a personal blog, not a hobby website, not a registered news agency, not a corporate media house, and not a government-affiliated publication. It is an independently owned and operated digital news publication.
           </p>
         </div>
 
-        {/* ──────────────────────────────────────────────────────────── */}
-        {/* 3. CORE NEWSROOM DESKS                                       */}
-        {/* ──────────────────────────────────────────────────────────── */}
+        <div className="space-y-4 text-sm sm:text-base text-gray-700">
+          <p>
+            In Indian philosophical and constitutional traditions, <em>Dharma</em> embodies public duty, ethical governance, and the rule of law (*Satya* and *Nyaya*). Under the principle that the law protects those who uphold it, an independent press serves as an indispensable record of public accountability.
+          </p>
+          <p>
+            The publication’s reporting prioritizes evidentiary depth: anchoring reporting in certified court dockets, police filings, Right to Information (RTI) disclosures, legislative records, and corroborated on-the-ground documentation.
+          </p>
+        </div>
+
+        {/* Editorial Coverage Areas */}
         <section className="space-y-4 pt-4 border-t border-gray-200">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600 block">
-              Editorial Architecture
+              Reporting Scope
             </span>
             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-950">
-              Newsroom Desks &amp; Pillars
+              Key Areas of Editorial Coverage
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <Building2 className="w-3.5 h-3.5" />
-                <span>National &amp; Governance</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Parliament, Cabinet &amp; Federal Policy
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Scrutinizing legislative acts, federal-state dynamics, electoral processes, administrative transparency, and public policy outcomes across India.
-              </p>
-            </div>
-
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <Scale className="w-3.5 h-3.5" />
-                <span>Supreme Court &amp; Judiciary</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Constitutional Benches &amp; Rule of Law
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                In-depth jurisprudence reporting from the Supreme Court and High Courts, upholding Article 21, civil liberties, and statutory accountability.
-              </p>
-            </div>
-
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <TrendingUp className="w-3.5 h-3.5" />
-                <span>Economy &amp; Financial Markets</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Macroeconomy, RBI &amp; Industrial Growth
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Independent economic analysis examining monetary policy, banking health, semiconductor manufacturing, and fiscal discipline.
-              </p>
-            </div>
-
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <Globe2 className="w-3.5 h-3.5" />
-                <span>World &amp; Strategic Affairs</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Diplomacy, Indo-Pacific &amp; South Asia
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Tracking multilateral summits, Quad security, bilateral trade negotiations, and global geopolitical developments.
-              </p>
-            </div>
-
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <FileText className="w-3.5 h-3.5" />
-                <span>Investigations &amp; RTI Watchdog</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Forensic Audits &amp; Public Records
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Multi-month ground inquiries analyzing RTI disclosures, municipal tenders, environmental degradation, and conflicts of interest.
-              </p>
-            </div>
-
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200/80 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-600 font-bold text-[11px] uppercase tracking-wider">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Fact Check &amp; Media Watch</span>
-              </div>
-              <h3 className="font-sans font-bold text-sm sm:text-base text-gray-950">
-                Deepfakes, Disinformation &amp; AI Forensics
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Countering synthetic media and partisan falsehoods through forensic audio/video spectrum analysis and certified public documents.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {editorialCoverage.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="p-4 bg-white border border-gray-200 rounded-lg space-y-2">
+                  <div className="flex items-center gap-2 text-amber-700 font-bold text-xs uppercase tracking-wider">
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <span>{item.title}</span>
+                  </div>
+                  <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        {/* ──────────────────────────────────────────────────────────── */}
-        {/* 4. CODE OF ETHICS & INDEPENDENCE                             */}
-        {/* ──────────────────────────────────────────────────────────── */}
-        <section className="bg-gray-50 rounded-xl border border-gray-200/80 p-4 sm:p-6 space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-gray-950">
-            Our Guiding Journalistic Principles
+        {/* Ownership & Operation Transparency Notice */}
+        <section className="bg-white border border-gray-200 p-6 rounded-lg space-y-3">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-gray-950 flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-amber-600" />
+            <span>Ownership, Staffing &amp; Regulatory Status</span>
           </h2>
-          <div className="space-y-2 text-xs sm:text-sm text-gray-700">
+          <div className="text-xs sm:text-sm text-gray-700 space-y-2 leading-relaxed">
             <p>
-              <strong>1. Verification Over Speed:</strong> Every dispatch is corroborated through primary source documentation, certified police filings, court dockets, or on-the-record statements.
+              The Dharma Watch is individually owned and managed by its single founder. The publication has no corporate board, external investors, or permanent editorial staff. All current operational expenses are borne personally by the individual owner without institutional funding or commercial advertising revenue.
             </p>
             <p>
-              <strong>2. Distinction Between News and Opinion:</strong> Clear structural separation is maintained between factual reportage and editorial commentary.
-            </p>
-            <p>
-              <strong>3. Public Corrections:</strong> Errors of fact are corrected promptly and transparently in our permanent public corrections ledger.
-            </p>
-            <p>
-              <strong>4. Protection of Sources:</strong> We defend journalistic confidentiality and whistleblower security under the highest standards of legal privilege.
+              The publication does not claim government accreditation, MIB approval, or news agency registration. In line with the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, a clarification request has been formally sent to the Ministry of Information and Broadcasting (MIB) regarding applicable filing requirements for independent digital news publishers, and a response is pending.
             </p>
           </div>
-
-          <div className="pt-2 flex flex-wrap gap-3">
-            <Link
-              to="/publication"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gray-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
+          <div className="pt-2">
+            <Link 
+              to="/ownership-and-funding" 
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-900 font-mono"
             >
-              <span>Publication Hub</span>
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-            <Link
-              to="/ownership-and-funding"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
-            >
-              <span>Ownership &amp; Funding</span>
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-            <Link
-              to="/standards"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-gray-300 hover:border-gray-900 text-gray-900 text-xs font-bold uppercase tracking-wider rounded transition-colors bg-white"
-            >
-              <span>Our Standards</span>
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-gray-300 hover:border-gray-900 text-gray-900 text-xs font-bold uppercase tracking-wider rounded transition-colors bg-white"
-            >
-              <span>Contact Newsroom</span>
+              <span>Read Full Ownership &amp; Funding Disclosure</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </section>
 
-        {/* ──────────────────────────────────────────────────────────── */}
-        {/* 5. INSTITUTIONAL POLICIES DIRECTORY                          */}
-        {/* ──────────────────────────────────────────────────────────── */}
+        {/* Transparency & Charters Directory */}
         <section className="space-y-3 pt-4 border-t border-gray-200">
           <h2 className="text-sm font-bold uppercase tracking-wider text-gray-950">
-            Institutional Charters &amp; Governance Directory
+            Editorial Policies &amp; Legal Disclosures
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
-            <Link to="/editorial" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
-              → Editorial Charter
+            <Link to="/ownership-and-funding" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Ownership &amp; Funding
             </Link>
             <Link to="/editorial-policy" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
               → Editorial Policy
             </Link>
+            <Link to="/standards" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Journalism Standards
+            </Link>
             <Link to="/fact-checking" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
-              → Fact-Checking
+              → Fact-Checking Policy
             </Link>
             <Link to="/corrections" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
               → Corrections Ledger
@@ -217,14 +175,23 @@ export const AboutPage: React.FC = () => {
             <Link to="/sources-and-attribution" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
               → Sources &amp; Attribution
             </Link>
-            <Link to="/ownership-and-funding" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
-              → Ownership &amp; Funding
+            <Link to="/privacy-policy" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Privacy Policy
+            </Link>
+            <Link to="/terms-of-use" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Terms of Use
+            </Link>
+            <Link to="/grievance-redressal" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Grievance Redressal
+            </Link>
+            <Link to="/ai-usage-policy" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → AI Usage Policy
+            </Link>
+            <Link to="/disclaimer" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
+              → Disclaimer
             </Link>
             <Link to="/contact" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
-              → Contact Desks
-            </Link>
-            <Link to="/publication" className="p-2.5 bg-stone-50 border border-stone-200 hover:border-amber-600 hover:text-amber-800 transition-colors block">
-              → Master Directory
+              → Contact Us
             </Link>
           </div>
         </section>

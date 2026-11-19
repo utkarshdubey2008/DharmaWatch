@@ -972,9 +972,15 @@ export const ContactPage: React.FC = () => {
                 </a>
               </div>
               <div className="pt-2">
-                <span className="text-[10px] uppercase font-bold text-gray-500 block">Corrections &amp; Standards</span>
+                <span className="text-[10px] uppercase font-bold text-gray-500 block">Corrections &amp; Fact Checking</span>
                 <a href="mailto:corrections@thedharmawatch.in" className="font-mono text-xs font-bold text-amber-600 hover:underline">
                   corrections@thedharmawatch.in
+                </a>
+              </div>
+              <div className="pt-2">
+                <span className="text-[10px] uppercase font-bold text-gray-500 block">Editorial Grievances</span>
+                <a href="mailto:grievance@thedharmawatch.in" className="font-mono text-xs font-bold text-amber-600 hover:underline">
+                  grievance@thedharmawatch.in
                 </a>
               </div>
               <div className="pt-2">

@@ -20,6 +20,13 @@ import { EditorialPolicyPage } from './pages/EditorialPolicyPage';
 import { FactCheckingPage } from './pages/FactCheckingPage';
 import { CorrectionsPage } from './pages/CorrectionsPage';
 import { SourcesAttributionPage } from './pages/SourcesAttributionPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfUsePage } from './pages/TermsOfUsePage';
+import { GrievanceRedressalPage } from './pages/GrievanceRedressalPage';
+import { AiUsagePolicyPage } from './pages/AiUsagePolicyPage';
+import { DisclaimerPage } from './pages/DisclaimerPage';
+import { AdvertisingPage } from './pages/AdvertisingPage';
+import { SubmissionsPage } from './pages/SubmissionsPage';
 import { AuthorPage } from './pages/AuthorPage';
 import { ContactPage } from './pages/ContactPage';
 import { PostStoryPage } from './pages/PostStoryPage';
@@ -126,6 +133,22 @@ export const App: React.FC = () => {
               <Route path="sources-and-attribution" element={<SourcesAttributionPage />} />
               <Route path="sources" element={<SourcesAttributionPage />} />
               <Route path="standards/sources" element={<SourcesAttributionPage />} />
+
+              {/* Legal, Privacy & Operational Charters */}
+              <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="privacy" element={<PrivacyPolicyPage />} />
+              <Route path="terms-of-use" element={<TermsOfUsePage />} />
+              <Route path="terms" element={<TermsOfUsePage />} />
+              <Route path="grievance-redressal" element={<GrievanceRedressalPage />} />
+              <Route path="grievance" element={<GrievanceRedressalPage />} />
+              <Route path="ai-usage-policy" element={<AiUsagePolicyPage />} />
+              <Route path="ai-policy" element={<AiUsagePolicyPage />} />
+              <Route path="ai" element={<AiUsagePolicyPage />} />
+              <Route path="disclaimer" element={<DisclaimerPage />} />
+              <Route path="advertising" element={<AdvertisingPage />} />
+              <Route path="advertise" element={<AdvertisingPage />} />
+              <Route path="submissions" element={<SubmissionsPage />} />
+              <Route path="op-ed-submissions" element={<SubmissionsPage />} />
 
               <Route path="contact" element={<ContactPage />} />
               <Route path="contact-us" element={<ContactPage />} />

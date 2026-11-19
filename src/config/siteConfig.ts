@@ -5,7 +5,7 @@
  */
 export const SITE_CONFIG = {
   name: 'The Dharma Watch',
-  legalName: 'The Dharma Watch Foundation',
+  legalName: 'The Dharma Watch',
   domain: process.env.PUBLIC_DOMAIN || 'https://thedharmawatch.in',
   siteUrl: process.env.SITE_URL || 'https://thedharmawatch.in',
 

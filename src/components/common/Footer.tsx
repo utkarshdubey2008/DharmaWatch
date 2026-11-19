@@ -105,7 +105,7 @@ export const Footer: React.FC = () => {
           {/* Col 3: Standards & Governance (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-gray-300 pb-2 border-b border-gray-800">
-              Charter &amp; Ethics
+              Charter &amp; Legal
             </h3>
             <ul className="space-y-1.5 text-xs font-medium text-gray-400">
               <li>
@@ -129,11 +129,6 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/editorial" className="hover:text-white transition-colors">
-                  Editorial Charter
-                </Link>
-              </li>
-              <li>
                 <Link to="/editorial-policy" className="hover:text-white transition-colors">
                   Editorial Policy
                 </Link>
@@ -151,6 +146,41 @@ export const Footer: React.FC = () => {
               <li>
                 <Link to="/sources-and-attribution" className="hover:text-white transition-colors">
                   Sources &amp; Attribution
+                </Link>
+              </li>
+              <li>
+                <Link to="/grievance-redressal" className="hover:text-white transition-colors">
+                  Grievance Redressal
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-of-use" className="hover:text-white transition-colors">
+                  Terms of Use
+                </Link>
+              </li>
+              <li>
+                <Link to="/ai-usage-policy" className="hover:text-white transition-colors">
+                  AI Usage Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="hover:text-white transition-colors">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
+                <Link to="/advertising" className="hover:text-white transition-colors">
+                  Advertising Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/submissions" className="hover:text-white transition-colors">
+                  Submissions
                 </Link>
               </li>
               <li>
@@ -216,8 +246,8 @@ export const Footer: React.FC = () => {
           <p>
             © {new Date().getFullYear()} The Dharma Watch. All rights reserved.
           </p>
-          <p className="text-[11px] text-gray-600">
-            Adhering to Press Council of India standards of verification, non-partisanship, and editorial integrity.
+          <p className="text-[11px] text-gray-500">
+            An independently owned and operated digital news publication. Dedicated to verified documentation, primary records, and constitutional accountability.
           </p>
         </div>
       </div>

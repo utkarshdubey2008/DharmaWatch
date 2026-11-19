@@ -62,8 +62,8 @@ export const SourcesAttributionPage: React.FC = () => {
       desc: 'Anonymity is granted only when on-the-record attribution would expose the source to concrete risk of physical violence, criminal prosecution, extra-judicial reprisal, or loss of livelihood.',
     },
     {
-      title: '2. Dual-Editor Identity Disclosure Requirement',
-      desc: 'No anonymous source may be utilized unless their true identity, background, and bona fides are shared with and vetted by both the beat reporter and a designated Senior Editor.',
+      title: '2. Direct Editorial Vetting Requirement',
+      desc: 'Anonymity is granted only after the source’s identity, background, and bona fides have been directly verified by the editor. The publication does not accept unvetted pseudonymous claims.',
     },
     {
       title: '3. The Rule of Two Independent Corroborations',

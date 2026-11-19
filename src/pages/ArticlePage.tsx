@@ -185,7 +185,7 @@ export const ArticlePage: React.FC = () => {
             )}
             <div>
               <span className="font-bold text-gray-900 text-sm block">
-                {article.author?.name || 'DharmaWatch Staff'}
+                {article.author?.name || 'The Dharma Watch'}
               </span>
               <span className="text-gray-500 text-[11px] block">
                 {article.author?.role || 'National Bureau'}

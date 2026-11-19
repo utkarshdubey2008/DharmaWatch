@@ -69,7 +69,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             </Link>
           </h4>
           <div className="text-[11px] text-gray-400 font-sans">
-            By {article.author?.name || 'DharmaWatch Staff'}
+            By {article.author?.name || 'The Dharma Watch'}
           </div>
         </div>
       </article>

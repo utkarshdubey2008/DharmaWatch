@@ -1,66 +1,66 @@
 import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, CheckCircle2, FileText, Scale, AlertCircle } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, FileText, Scale, AlertCircle, ArrowRight } from 'lucide-react';
 
 export const EditorialPolicyPage: React.FC = () => {
   const breadcrumbs = [
-    { label: 'Newsroom', path: '/' },
-    { label: 'Editorial Charter & Standards' },
+    { label: 'Home', path: '/' },
+    { label: 'Standards', path: '/standards' },
+    { label: 'Editorial Policy' },
   ];
 
   const standards = [
     {
       title: '1. Primary Source Verification & Evidentiary Standard',
-      desc: 'DharmaWatch operates on an evidence-first doctrine. We do not publish speculative rumors, anonymous leaks without secondary verification, or uncorroborated social media chatter. Every investigative dispatch and lead news report is anchored in primary records—including certified First Information Reports (FIRs), chargesheets, judicial remand orders, RTI disclosures, parliamentary transcripts, or certified audio-visual recordings.',
+      desc: 'The Dharma Watch operates on an evidence-first doctrine. We do not publish speculative rumors, unverified leaks, or uncorroborated social media chatter. Investigative reports and news dispatches are anchored in primary public records—including certified First Information Reports (FIRs), chargesheets, judicial remand orders, RTI disclosures, parliamentary transcripts, and verified documentary material.',
     },
     {
-      title: '2. Strict Separation of News and Opinion',
-      desc: 'Our readers are entitled to distinguish immediately between verifiable factual reportage and editorial interpretation. Factual news reports maintain an objective, dispassionate tone. Commentary, columnists, and institutional positions are strictly demarcated under "Opinion", "The Dharma View (Editorials)", or "Analysis" with explicit author attribution.',
+      title: '2. Clear Demarcation of News and Opinion',
+      desc: 'Readers are entitled to distinguish immediately between verifiable factual reportage and editorial interpretation. Factual news reports maintain an objective, dispassionate tone. Commentary, columnists, and institutional positions are strictly demarcated under "Opinion", "The Dharma View (Editorials)", or "Analysis" with explicit author attribution.',
     },
     {
       title: '3. Fairness, Balance & Right of Reply',
-      desc: 'Whenever an article or investigation makes serious allegations regarding an individual, corporation, political party, or government institution, our reporters are required to solicit a response prior to publication. If a response is received, it is incorporated fairly into the body of the dispatch. If no response is received before our publication deadline, the report explicitly notes that a response was sought and remains open for update.',
+      desc: 'Whenever an article or investigation makes serious factual allegations regarding an individual, corporation, political party, or government body, reasonable efforts are made to solicit a response prior to publication. If a response is received, it is incorporated into the dispatch. If no response is received prior to publication, the report notes that inquiries were sought and remains open for subsequent update.',
     },
     {
-      title: '4. Public Corrections & Permanent Transparency',
-      desc: 'Honesty and accountability demand that errors of fact be acknowledged without equivocation. DharmaWatch does not execute silent or stealth edits. When a factual discrepancy is identified, an explicit correction note is appended to the article stating the exact error, what was amended, and the timestamp of rectification. All corrections are mirrored in our permanent Public Corrections Ledger.',
+      title: '4. Public Corrections & Errata Policy',
+      desc: 'Honesty and accountability demand that errors of fact be acknowledged without equivocation. The Dharma Watch does not execute silent edits. When a factual discrepancy is identified, an explicit correction note is appended to the article stating the error, what was amended, and the timestamp of rectification. All corrections are mirrored in our permanent Public Corrections Ledger.',
     },
     {
-      title: '5. Whistleblower Protection & Source Confidentiality',
-      desc: 'We defend the constitutional principle of confidential sourcing. When sources risk professional retribution, legal harassment, or physical danger to expose corruption, illegality, or institutional failure, their identities are safeguarded with end-to-end cryptographic security and legal privilege.',
+      title: '5. Confidential Source Protection',
+      desc: 'We defend the journalistic principle of confidential sourcing. When individuals risk professional reprisal, legal harassment, or physical danger to expose corruption, illegality, or institutional failure, their confidentiality is preserved with end-to-end security precautions.',
     },
     {
       title: '6. Forensic Media & AI Disinformation Verification',
-      desc: 'In an era of synthetic media, generative voice clones, and viral disinformation, our Fact-Check and Media Watch desk applies rigorous technical protocols—including audio waveform spectral analysis, reverse image search, and verification against official press briefings—before authenticating any viral claim.',
+      desc: 'In an era of synthetic media, generative voice clones, and viral disinformation, our Fact-Check and Media Watch desk applies technical protocols—including reverse image search, audio spectrogram inspection, and comparison against official press releases—before authenticating viral claims.',
     },
     {
-      title: '7. Adherence to Press Council of India Guidelines',
-      desc: 'DharmaWatch subscribes to the Journalistic Conduct norms articulated by the Press Council of India. We uphold public decency, respect communal peace and social harmony, avoid sensationalism in reporting criminal matters, and respect the dignity and privacy of victims of crime and minors.',
+      title: '7. Responsible Coverage of Judicial Proceedings & Crime',
+      desc: 'In covering ongoing judicial matters (*sub judice*), the publication adheres strictly to verified filings, court proceedings, and judicial orders without prejudging culpability. We strictly adhere to statutory protections prohibiting disclosure of the identity of minors (Juvenile Justice Act) and victims of sexual offences under applicable legal provisions.',
     },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-6 font-sans">
-      <Breadcrumbs items={breadcrumbs} className="hidden sm:flex mb-2" />
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8 font-sans">
+      <Breadcrumbs items={breadcrumbs} className="hidden sm:flex" />
 
-      <header className="border-b-2 border-gray-900 pb-4 space-y-2">
-        <div className="text-amber-600 font-extrabold text-[11px] uppercase tracking-wider">
-          DharmaWatch Charter
+      <header className="border-b-2 border-gray-900 pb-6 space-y-3">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-2.5 py-1 border border-amber-200">
+            Journalistic Charter
+          </span>
+          <span className="text-gray-300">•</span>
+          <span className="text-xs text-gray-500 font-mono">Editorial Policy</span>
         </div>
 
-        <h1 className="font-sans font-black text-2xl sm:text-4xl text-gray-950 tracking-tight leading-tight">
-          Editorial Standards &amp; Evidentiary Charter
+        <h1 className="font-sans font-black text-2xl sm:text-4xl lg:text-5xl text-gray-950 tracking-tight leading-tight">
+          Editorial Standards &amp; Verification Policy
         </h1>
 
-        <div className="py-2 border-y border-gray-100 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-600">
-          <span className="font-bold text-gray-950">
-            Documented Evidence • Constitutional Integrity
-          </span>
-          <span className="text-amber-700 font-semibold uppercase tracking-wider text-[11px]">
-            Verified Records • Transparent Ledger
-          </span>
-        </div>
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-sans">
+          The Dharma Watch is committed to evidentiary rigor, constitutional accountability, and journalistic transparency. This policy outlines our operational standards across newsgathering, verification, and correction.
+        </p>
       </header>
 
       {/* Core Principles Grid */}
@@ -84,12 +84,12 @@ export const EditorialPolicyPage: React.FC = () => {
       <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 sm:p-8 space-y-3">
         <h3 className="font-sans font-bold text-lg text-gray-900 flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-amber-600" />
-          <span>Spot an Inaccuracy in Our Reporting?</span>
+          <span>Reporting Inaccuracies</span>
         </h3>
-        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-          If you believe a factual assertion in any DharmaWatch report is inaccurate or outdated, please submit a formal correction request with supporting primary documents to our editorial standards desk at <strong className="text-gray-900 font-mono">corrections@thedharmawatch.in</strong>.
+        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans">
+          If you believe a factual assertion in any DharmaWatch report is inaccurate or incomplete, please submit a correction request with supporting primary documents to our editorial desk at <strong className="text-gray-900 font-mono">corrections@thedharmawatch.in</strong>.
         </p>
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-wider">
+        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-wider font-mono">
           <Link to="/corrections" className="text-amber-700 hover:text-amber-900">
             View Public Corrections Ledger →
           </Link>

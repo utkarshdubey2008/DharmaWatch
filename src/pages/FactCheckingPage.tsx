@@ -72,8 +72,8 @@ export const FactCheckingPage: React.FC = () => {
     },
     {
       step: '04',
-      title: 'Dual-Editor Adjudication & Publishing',
-      desc: 'No fact-check is published without unanimous sign-off by the lead researcher and a senior desk editor. We provide direct clickable links to all primary evidence so readers can audit our conclusion independently.',
+      title: 'Documentation & Editorial Verification',
+      desc: 'Every fact-check undergoes rigorous cross-referencing against primary records prior to publication. We provide direct links and references to all primary documentation so readers can review and audit our evidentiary basis independently.',
     },
   ];
 

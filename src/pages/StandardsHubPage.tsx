@@ -11,7 +11,9 @@ import {
   AlertCircle,
   ArrowRight,
   Eye,
-  Award
+  Award,
+  Cpu,
+  HelpCircle
 } from 'lucide-react';
 
 export const StandardsHubPage: React.FC = () => {
@@ -24,23 +26,23 @@ export const StandardsHubPage: React.FC = () => {
     {
       title: 'Editorial Independence Charter',
       path: '/editorial',
-      badge: 'Charter & Ethics',
+      badge: 'News vs. Opinion',
       icon: BookOpen,
-      desc: 'The constitutional firewall separating news reporting from commentary, staff conflict of interest rules, financial asset disclosures, and reporter conscience protections.',
+      desc: 'The clear structural separation between objective news reporting, forensic analysis, institutional editorials, and signed opinion columns.',
     },
     {
       title: 'Editorial Policy & Evidentiary Mandate',
       path: '/editorial-policy',
       badge: 'Evidentiary Standard',
       icon: FileText,
-      desc: 'Our evidentiary criteria for publishing investigative dispatches, mandatory 48-hour right-of-reply protocol, POCSO legal compliance, and ongoing judicial trial coverage.',
+      desc: 'Our evidentiary criteria for publishing investigative reports, right-of-reply protocol, POCSO and minor protection, and ongoing judicial trial reporting rules.',
     },
     {
       title: 'Fact-Checking & Media Watch Protocol',
       path: '/fact-checking',
-      badge: 'Digital Forensics',
+      badge: 'Forensic Verification',
       icon: CheckCircle2,
-      desc: 'Multi-tiered authentication protocols for viral disinformation, reverse visual forensics, audio spectrogram validation, and our 5-tier veracity rating system.',
+      desc: 'Verification methodology for viral claims, reverse visual search, audio spectrogram validation, and our five-tier veracity rating system.',
     },
     {
       title: 'Public Corrections Ledger & Errata Protocol',
@@ -50,38 +52,45 @@ export const StandardsHubPage: React.FC = () => {
       desc: 'Our commitment to public accountability. How factual discrepancies are logged, corrected, and permanently published in our public corrections archive.',
     },
     {
-      title: 'Sources, Sourcing Pyramid & Attribution Doctrine',
+      title: 'Sources & Attribution Doctrine',
       path: '/sources-and-attribution',
-      badge: 'Sourcing Hierarchy',
+      badge: 'Evidence Hierarchy',
       icon: Lock,
-      desc: 'The strict hierarchy of primary legal filings, rules governing anonymous source approval, dual-editor confirmation, and whistleblower defense shields.',
+      desc: 'The strict hierarchy of primary legal filings, rules governing anonymous source approval, secondary corroboration, and confidential source protections.',
+    },
+    {
+      title: 'AI Usage & Synthetic Media Policy',
+      path: '/ai-usage-policy',
+      badge: 'AI & Synthesis',
+      icon: Cpu,
+      desc: 'Our commitment to human reporting, clear labeling of any AI-assisted tools, and forensic interrogation of synthetic deepfakes.',
     },
   ];
 
   const corePillars = [
     {
       title: '1. Primary Source Anchoring',
-      desc: 'We do not publish gossip, single-source uncorroborated leaks, or viral hearsay. Every investigation is substantiated by certified primary documentation: court transcripts, FIRs, RTI replies, or forensic media.',
+      desc: 'We do not publish unverified gossip, single-source uncorroborated leaks, or viral hearsay. Reporting is anchored in certified primary documentation: court records, police filings, RTI disclosures, or verified documentary media.',
     },
     {
-      title: '2. The 48-Hour Right of Reply',
-      desc: 'Fairness is an ethical prerequisite. When investigative reportage touches an individual, public official, or corporation, detailed inquiries are tendered with a reasonable window for substantive reply before publication.',
+      title: '2. Fair Inquiries & Right of Reply',
+      desc: 'When investigative reporting raises specific allegations regarding an individual, public official, or corporation, reasonable inquiries are tendered with an appropriate window for response prior to publication.',
     },
     {
       title: '3. Zero Silent Edits',
-      desc: 'When factual errors occur, we correct them transparently. We never alter text secretly. An explicit correction notice detailing what was altered, why, and the exact timestamp is appended to the report and logged.',
+      desc: 'When factual errors occur, we correct them transparently. We do not alter text secretly. An explicit correction notice detailing what was altered, why, and the timestamp is logged and appended to the report.',
     },
     {
       title: '4. Non-Negotiable Child & Victim Protection',
-      desc: 'Strict legal and ethical compliance with Section 74 of the Juvenile Justice Act and Section 228A IPC/BNS. The identity, school, locality, or family details of minors and victims of sexual violence are never disclosed.',
+      desc: 'Strict legal and ethical compliance with the Juvenile Justice Act and statutory privacy provisions. The identity, school, locality, or family details of minors and victims of sexual violence are never disclosed.',
     },
     {
-      title: '5. Complete Conflict Disclosure',
-      desc: 'Reporters and editors must recuse themselves from stories involving personal, financial, familial, or organizational interests. Staff members are prohibited from accepting gifts, paid travel, or political campaign roles.',
+      title: '5. Conflict of Interest Disclosure',
+      desc: 'The publication maintains a strict policy against conflicts of interest. Writers and contributors must disclose any personal, commercial, or organizational interest in subjects they report upon.',
     },
     {
-      title: '6. Cryptographic Whistleblower Sanctuary',
-      desc: 'We defend the constitutional principle of confidential sourcing. Whistleblowers exposing systemic malpractice or illegalities are shielded with end-to-end client-side encryption and absolute journalistic confidentiality.',
+      title: '6. Confidential Source Protection',
+      desc: 'We respect and defend the principle of confidential sourcing when individuals risk retaliation to expose corruption, malpractice, or illegality.',
     },
   ];
 
@@ -96,15 +105,15 @@ export const StandardsHubPage: React.FC = () => {
             Journalistic Code of Integrity
           </span>
           <span className="text-gray-300">•</span>
-          <span className="text-xs text-gray-500 font-mono">Press Council of India Aligned</span>
+          <span className="text-xs text-gray-500 font-mono">Editorial Standards</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-sans font-black tracking-tight text-gray-950 leading-tight">
-          Our Standards &amp; Ethical Charter
+          Journalism Standards &amp; Ethical Principles
         </h1>
 
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-sans">
-          The Dharma Watch operates on a rigorous evidentiary doctrine. In an era saturated with sensationalism, algorithmic rage, and uncorroborated viral narratives, we adhere to the ancient maxim <em>Satyam Eva Jayate</em>—grounding our journalism in constitutional truth, verifiable public records, and fearless inquiry.
+          The Dharma Watch operates on a rigorous evidentiary doctrine. In an era of algorithmic noise, viral rumors, and unverified assertions, we adhere to foundational journalistic discipline—grounding our reporting in verified public records, constitutional fidelity, and factual precision.
         </p>
       </header>
 
@@ -113,9 +122,9 @@ export const StandardsHubPage: React.FC = () => {
         <div className="flex items-center justify-between border-b border-gray-200 pb-2">
           <h2 className="text-xs font-bold uppercase tracking-wider text-gray-950 flex items-center gap-2">
             <Award className="w-4 h-4 text-amber-600" />
-            <span>Dedicated Standards &amp; Policy Charters</span>
+            <span>Dedicated Charters &amp; Policy Protocols</span>
           </h2>
-          <span className="text-xs font-mono text-gray-400">Complete Protocols</span>
+          <span className="text-xs font-mono text-gray-400">Policy Charters</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -159,14 +168,14 @@ export const StandardsHubPage: React.FC = () => {
         <div className="border-b border-stone-200 pb-3">
           <span className="text-[10px] font-mono uppercase font-bold text-amber-700 block mb-1">Evidentiary Doctrine</span>
           <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide">
-            The Six Pillars of DharmaWatch Evidentiary Rigor
+            The Six Pillars of DharmaWatch Evidentiary Discipline
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {corePillars.map((pillar) => (
             <div key={pillar.title} className="space-y-1.5">
-              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                 <span>{pillar.title}</span>
               </h3>
@@ -185,13 +194,15 @@ export const StandardsHubPage: React.FC = () => {
           <span>Reader Oversight &amp; Grievance Redressal</span>
         </h2>
         <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-          If you believe any story published by The Dharma Watch contains a factual inaccuracy or violates our stated standards, we encourage you to file an editorial grievance. Under the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, all complaints are acknowledged within 24 hours and addressed within 15 days.
+          If you believe any story published on The Dharma Watch contains a factual inaccuracy or ethical concern, we encourage you to file an editorial correction request or formal grievance. All communications are reviewed promptly.
         </p>
         <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono">
-          <span>Grievance Desk: <strong className="text-gray-900">corrections@thedharmawatch.in</strong></span>
+          <span>Corrections: <strong className="text-gray-900">corrections@thedharmawatch.in</strong></span>
           <span>•</span>
-          <Link to="/corrections" className="text-amber-700 font-bold hover:underline">
-            View Public Corrections Ledger →
+          <span>Grievances: <strong className="text-gray-900">grievance@thedharmawatch.in</strong></span>
+          <span>•</span>
+          <Link to="/grievance-redressal" className="text-amber-700 font-bold hover:underline">
+            Grievance Redressal Procedure →
           </Link>
         </div>
       </section>

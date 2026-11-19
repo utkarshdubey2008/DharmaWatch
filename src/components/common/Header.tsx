@@ -473,11 +473,27 @@ export const Header: React.FC = () => {
                       <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
                     </Link>
                     <Link
+                      to="/grievance-redressal"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span>Grievance Redressal</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
+                      to="/privacy-policy"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
+                    >
+                      <span>Privacy &amp; Terms</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                    </Link>
+                    <Link
                       to="/contact"
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
                     >
-                      <span>Contact Newsroom</span>
+                      <span>Contact Us</span>
                       <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
                     </Link>
                     <a
