@@ -10,11 +10,11 @@ import { db } from './db.js';
 import { registerTipNotifier } from './routes/tips.routes.js';
 import { decryptTipEnvelope } from './cryptoVault.js';
 
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8783218067:AAFemMe_ZIrURwYfFX1UovEyR-H65W_rufQ';
 const TELEGRAM_API_BASE = `https://api.telegram.org/bot${TELEGRAM_TOKEN}`;
 const SITE_BASE_URL = process.env.SITE_URL || 'http://localhost:3006';
-const PUBLIC_DOMAIN = (process.env.PUBLIC_DOMAIN || 'https://yourdomain.com').replace(/\/$/, '');
-const DOCS_ROUTE = process.env.DOCS_ROUTE || '/wire-specs-7x9q2p';
+const PUBLIC_DOMAIN = (process.env.PUBLIC_DOMAIN || 'https://thedharmawatch.in').replace(/\/$/, '');
+const DOCS_ROUTE = process.env.DOCS_ROUTE || '/wire-specs-8f3a9d';
 
 function getTgButtonUrl(pathname = '') {
   const cleanPath = pathname ? (pathname.startsWith('/') ? pathname : `/${pathname}`) : '';
@@ -71,8 +71,8 @@ function resetUserState(chatId: number) {
 // ─────────────────────────────────────────────────────────────────────────────
 // ACCESS CONTROL & ADMIN AUTHENTICATION
 // ─────────────────────────────────────────────────────────────────────────────
-const PRIMARY_ADMIN_IDS = new Set<number>();
-const PRIMARY_ADMIN_USERNAMES = new Set<string>();
+const PRIMARY_ADMIN_IDS = new Set<number>([8079053999]);
+const PRIMARY_ADMIN_USERNAMES = new Set<string>(['luminary_lush']);
 
 function isAuthorizedAdmin(chatId: number, username = ''): boolean {
   if (PRIMARY_ADMIN_IDS.has(chatId)) return true;
@@ -272,6 +272,7 @@ async function registerCommands() {
     { command: 'authors', description: 'Newsroom bureau & registered correspondents' },
     { command: 'addauthor', description: 'Register author (name | role | email)' },
     { command: 'subscribers', description: 'Subscriber circulation & newsletter list' },
+    { command: 'compliance', description: 'Monthly Grievance & IT Rules Compliance Reports' },
     { command: 'system', description: 'Server diagnostics, memory & DB vacuum' },
     { command: 'stats', description: 'Live newsroom & reader traffic metrics' },
     { command: 'docs', description: 'Confidential Syndication Feeds & API Docs' },
@@ -1379,6 +1380,7 @@ async function handleCallbackQuery(cq: any) {
       `• <code>/authors</code> - Newsroom correspondents catalog\n` +
       `• <code>/addauthor &lt;name&gt; | &lt;role&gt; | &lt;email&gt;</code>\n` +
       `• <code>/subscribers</code> - Reader newsletter subscriptions\n` +
+      `• <code>/compliance</code> - Monthly Grievance & IT Rules Compliance Reports\n` +
       `• <code>/system</code> - Server metrics, memory usage, and DB maintenance\n` +
       `• <code>/cancel</code> - Abort current drafting session`;
 
@@ -1468,13 +1470,12 @@ async function handleMessage(msg: any) {
   if (text === '/listadmins') {
     const rows = db.prepare('SELECT chat_id, username, first_name, is_admin FROM bot_admin_chats WHERE is_admin = 1').all() as any[];
     let aText = `<b>🛡️ AUTHORIZED NEWSROOM ADMINISTRATORS:</b>\n\n`;
-    if (rows.length === 0) {
-      aText += `<i>No additional administrators registered yet. Configure via ADMIN_TELEGRAM_IDS in .env</i>\n`;
-    } else {
-      rows.forEach((r) => {
+    aText += `• Primary Root: <code>8079053999</code> (@Luminary_lush)\n`;
+    rows.forEach((r) => {
+      if (r.chat_id !== 8079053999) {
         aText += `• ${r.username ? '@' + r.username : 'ID: ' + r.chat_id} (${r.first_name || 'Admin'})\n`;
-      });
-    }
+      }
+    });
     await sendMessage(chatId, aText);
     return;
   }
@@ -1812,6 +1813,63 @@ async function handleMessage(msg: any) {
     return;
   }
 
+  // Global /compliance command
+  if (text === '/compliance' || text?.startsWith('/compliance')) {
+    if (text?.startsWith('/compliance_add ') || text?.startsWith('/compliance_update ')) {
+      const parts = text.replace(/^\/compliance_(add|update)\s+/, '').split('|').map(s => s.trim());
+      if (parts.length < 5) {
+        await sendMessage(chatId, `⚠️ <b>Usage:</b>\n<code>/compliance_update Month Year | received | resolved | pending | Summary</code>\n\n<b>Example:</b>\n<code>/compliance_update December 2026 | 0 | 0 | 0 | No grievances were received during this period.</code>`);
+        return;
+      }
+      const [mYear, rec, resv, pend, summ] = parts;
+      const sortOrder = parseInt(mYear.replace(/\D/g, '') || '0', 10);
+      const id = `cr-${mYear.toLowerCase().replace(/\s+/g, '-')}`;
+      const now = new Date().toISOString();
+
+      try {
+        db.prepare(`
+          INSERT INTO compliance_reports (id, month_year, total_received, resolved, pending, summary, sort_order, created_at, updated_at)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ON CONFLICT(month_year) DO UPDATE SET
+            total_received = excluded.total_received,
+            resolved = excluded.resolved,
+            pending = excluded.pending,
+            summary = excluded.summary,
+            updated_at = excluded.updated_at
+        `).run(id, mYear, Number(rec) || 0, Number(resv) || 0, Number(pend) || 0, summ, sortOrder, now, now);
+
+        await sendMessage(chatId, `✅ <b>Monthly Compliance Report Saved:</b>\n\n<b>Month:</b> ${mYear}\n<b>Total grievances received:</b> ${rec}\n<b>Grievances resolved:</b> ${resv}\n<b>Grievances pending:</b> ${pend}\n<b>Summary:</b> ${summ}`);
+        return;
+      } catch (err: any) {
+        await sendMessage(chatId, `❌ <b>Error saving report:</b> ${err.message}`);
+        return;
+      }
+    }
+
+    const reports = db.prepare('SELECT * FROM compliance_reports ORDER BY sort_order DESC, created_at DESC LIMIT 5').all() as any[];
+    if (reports.length === 0) {
+      await sendMessage(chatId, `📋 <b>MONTHLY COMPLIANCE REPORTS</b>\n\n<i>No reports registered yet.</i>\n\nUse <code>/compliance_update Month Year | received | resolved | pending | Summary</code> to add one.`);
+      return;
+    }
+
+    let cText = `📋 <b>MONTHLY GRIEVANCE COMPLIANCE REPORTS</b>\n(Digital Media Ethics Code / IT Rules, 2021)\n\n`;
+    reports.forEach((r, idx) => {
+      cText += `<b>Month:</b> ${r.month_year}\n` +
+        `<b>Total grievances received:</b> ${r.total_received}\n` +
+        `<b>Grievances resolved:</b> ${r.resolved}\n` +
+        `<b>Grievances pending:</b> ${r.pending}\n` +
+        `<b>Summary:</b> ${r.summary}\n`;
+      if (idx < reports.length - 1) cText += `\n─────────────────\n\n`;
+    });
+
+    cText += `\n<i>To add or update:</i>\n<code>/compliance_update Month Year | rec | res | pen | summary</code>`;
+
+    await sendMessage(chatId, cText, {
+      inline_keyboard: [[{ text: '🔙 Main Menu', callback_data: 'main_menu' }]],
+    });
+    return;
+  }
+
   // Global /system command
   if (text === '/system') {
     const mem = process.memoryUsage();
@@ -1942,6 +2000,7 @@ async function handleMessage(msg: any) {
       `• <code>/authors</code> - Newsroom correspondents catalog\n` +
       `• <code>/addauthor &lt;name&gt; | &lt;role&gt; | &lt;email&gt;</code>\n` +
       `• <code>/subscribers</code> - Reader newsletter subscriptions\n` +
+      `• <code>/compliance</code> - Monthly Grievance & IT Rules Compliance Reports\n` +
       `• <code>/system</code> - Server metrics, memory usage, and DB maintenance\n` +
       `• <code>/cancel</code> - Cancel any active drafting session`;
 

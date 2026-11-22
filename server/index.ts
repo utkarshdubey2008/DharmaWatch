@@ -17,6 +17,7 @@ import { analyticsRouter } from './routes/analytics.routes.js';
 import { notificationsRouter } from './routes/notifications.routes.js';
 import { subscribersRouter } from './routes/subscribers.routes.js';
 import { settingsRouter } from './routes/settings.routes.js';
+import { complianceRouter } from './routes/compliance.routes.js';
 import { tipsRouter } from './routes/tips.routes.js';
 import { syndicationRouter } from './routes/syndication.routes.js';
 import { startTelegramBot } from './telegramBot.js';
@@ -109,6 +110,7 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/subscribers', subscribersRouter);
 app.use('/api/settings', settingsRouter);
+app.use('/api/compliance', complianceRouter);
 app.use('/api/tips', tipsRouter);
 app.use(syndicationRouter);
 
@@ -397,6 +399,18 @@ function getOpenGraphMeta(req: express.Request): PageMeta {
     grievance: {
       title: 'Grievance Redressal Mechanism | The Dharma Watch',
       description: 'Editorial grievance redressal procedure, timelines, and contact channels for published content on The Dharma Watch.',
+    },
+    'grievance-officer': {
+      title: 'Grievance Officer | The Dharma Watch',
+      description: 'Grievance Officer contact information under India Digital Media Ethics Code (IT Rules, 2021).',
+    },
+    'compliance-report': {
+      title: 'Monthly Compliance Report | The Dharma Watch',
+      description: 'Monthly Grievance Compliance Reports published in line with the Digital Media Ethics Code under India IT Rules, 2021.',
+    },
+    compliance: {
+      title: 'Monthly Compliance Report | The Dharma Watch',
+      description: 'Monthly Grievance Compliance Reports published in line with the Digital Media Ethics Code under India IT Rules, 2021.',
     },
     'ai-usage-policy': {
       title: 'AI Usage & Synthetic Media Policy | The Dharma Watch',

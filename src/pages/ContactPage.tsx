@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import {
   Lock,
@@ -17,6 +18,7 @@ import {
   RefreshCw,
   LogOut,
   Code2,
+  Scale,
 } from 'lucide-react';
 import {
   encryptWhistleblowerPayload,
@@ -279,6 +281,41 @@ export const ContactPage: React.FC = () => {
         <p className="font-sans text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed max-w-3xl">
           All browser submissions are encrypted end-to-end (E2EE) with our newsroom&apos;s 2048-bit RSA-OAEP and AES-256-GCM cipher before leaving your device. Connection logs, IP addresses, and metadata headers are permanently discarded.
         </p>
+      </div>
+
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* GRIEVANCE OFFICER STATUTORY CONTACT (IT RULES, 2021)          */}
+      {/* ──────────────────────────────────────────────────────────── */}
+      <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
+        <div className="flex items-center justify-between border-b border-amber-200/60 pb-2.5">
+          <div className="flex items-center gap-2 text-gray-950 font-bold text-xs uppercase tracking-wider font-mono">
+            <Scale className="w-4 h-4 text-amber-700" />
+            <span>Grievance Officer (IT Rules, 2021)</span>
+          </div>
+          <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">
+            Sole Point of Contact
+          </span>
+        </div>
+
+        <p className="text-xs text-gray-700 leading-relaxed">
+          In accordance with the Digital Media Ethics Code under India&apos;s Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, the details of the designated Grievance Officer for DharmaWatch are provided below:
+        </p>
+
+        <div className="p-4 bg-white border border-amber-200/70 rounded-xl space-y-1.5 text-xs font-mono">
+          <div><strong className="text-gray-900">Name:</strong> Shubham</div>
+          <div><strong className="text-gray-900">Designation:</strong> Grievance Officer</div>
+          <div><strong className="text-gray-900">Email:</strong> <a href="mailto:grievance@TheDharmaWatch.in" className="text-amber-700 font-bold hover:underline">grievance@TheDharmaWatch.in</a></div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs text-gray-600">
+          <span className="text-[11px] text-gray-500">
+            Note: Email is the sole point of contact for the Grievance Officer.
+          </span>
+          <Link to="/grievance-redressal" className="text-amber-700 font-bold hover:underline text-xs flex items-center gap-1 font-mono">
+            <span>View Grievance Redressal Policy</span>
+            <ExternalLink className="w-3 h-3" />
+          </Link>
+        </div>
       </div>
 
       {/* ──────────────────────────────────────────────────────────── */}
@@ -978,9 +1015,9 @@ export const ContactPage: React.FC = () => {
                 </a>
               </div>
               <div className="pt-2">
-                <span className="text-[10px] uppercase font-bold text-gray-500 block">Editorial Grievances</span>
-                <a href="mailto:grievance@thedharmawatch.in" className="font-mono text-xs font-bold text-amber-600 hover:underline">
-                  grievance@thedharmawatch.in
+                <span className="text-[10px] uppercase font-bold text-gray-500 block">Grievance Officer (Shubham)</span>
+                <a href="mailto:grievance@TheDharmaWatch.in" className="font-mono text-xs font-bold text-amber-600 hover:underline">
+                  grievance@TheDharmaWatch.in
                 </a>
               </div>
               <div className="pt-2">

@@ -23,6 +23,7 @@ import { SourcesAttributionPage } from './pages/SourcesAttributionPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfUsePage } from './pages/TermsOfUsePage';
 import { GrievanceRedressalPage } from './pages/GrievanceRedressalPage';
+import { ComplianceReportPage } from './pages/ComplianceReportPage';
 import { AiUsagePolicyPage } from './pages/AiUsagePolicyPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { AdvertisingPage } from './pages/AdvertisingPage';
@@ -51,6 +52,7 @@ import { AdminCorrectionsPage } from './admin/pages/AdminCorrectionsPage';
 import { AdminAuditLogPage } from './admin/pages/AdminAuditLogPage';
 import { AdminAnalyticsPage } from './admin/pages/AdminAnalyticsPage';
 import { AdminSubscribersPage } from './admin/pages/AdminSubscribersPage';
+import { AdminCompliancePage } from './admin/pages/AdminCompliancePage';
 import { AdminSettingsPage } from './admin/pages/AdminSettingsPage';
 
 import { DOCS_CONFIG } from './config/docsConfig';
@@ -84,6 +86,7 @@ export const App: React.FC = () => {
               <Route path="audit-log" element={<AdminAuditLogPage />} />
               <Route path="analytics" element={<AdminAnalyticsPage />} />
               <Route path="subscribers" element={<AdminSubscribersPage />} />
+              <Route path="compliance" element={<AdminCompliancePage />} />
               <Route path="settings" element={<AdminSettingsPage />} />
             </Route>
 
@@ -141,6 +144,10 @@ export const App: React.FC = () => {
               <Route path="terms" element={<TermsOfUsePage />} />
               <Route path="grievance-redressal" element={<GrievanceRedressalPage />} />
               <Route path="grievance" element={<GrievanceRedressalPage />} />
+              <Route path="compliance-report" element={<ComplianceReportPage />} />
+              <Route path="compliance" element={<ComplianceReportPage />} />
+              <Route path="monthly-compliance-report" element={<ComplianceReportPage />} />
+              <Route path="grievance-officer" element={<ContactPage />} />
               <Route path="ai-usage-policy" element={<AiUsagePolicyPage />} />
               <Route path="ai-policy" element={<AiUsagePolicyPage />} />
               <Route path="ai" element={<AiUsagePolicyPage />} />

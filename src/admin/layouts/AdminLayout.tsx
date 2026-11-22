@@ -22,6 +22,7 @@ import {
   Menu,
   X,
   ShieldAlert,
+  FileCheck,
 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
@@ -126,6 +127,7 @@ export const AdminLayout: React.FC = () => {
         { label: 'Audit Log', path: '/admin/audit-log', icon: History },
         { label: 'Analytics', path: '/admin/analytics', icon: BarChart3 },
         { label: 'Subscribers', path: '/admin/subscribers', icon: Mail },
+        { label: 'Compliance Reports', path: '/admin/compliance', icon: FileCheck },
         { label: 'Settings', path: '/admin/settings', icon: Settings, adminOnly: true },
       ],
     },

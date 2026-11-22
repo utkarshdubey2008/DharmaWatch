@@ -243,6 +243,18 @@ export function initDatabase() {
       value TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS compliance_reports (
+      id TEXT PRIMARY KEY,
+      month_year TEXT UNIQUE NOT NULL,
+      total_received INTEGER NOT NULL DEFAULT 0,
+      resolved INTEGER NOT NULL DEFAULT 0,
+      pending INTEGER NOT NULL DEFAULT 0,
+      summary TEXT NOT NULL DEFAULT 'No grievances were received during this period.',
+      sort_order INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
   `;
 
   for (const statement of schema.split(';')) {
@@ -571,5 +583,18 @@ function seedInitialData() {
     insertSetting.run('enable_breaking_banner', 'true', now);
     insertSetting.run('default_read_time', '4', now);
     insertSetting.run('allow_public_submissions', 'true', now);
+  }
+
+  // 10. Seed Compliance Reports
+  const crCount = db.prepare('SELECT COUNT(*) as count FROM compliance_reports').get() as { count: number };
+  if (crCount.count === 0) {
+    const insertCR = db.prepare(`
+      INSERT OR IGNORE INTO compliance_reports (id, month_year, total_received, resolved, pending, summary, sort_order, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    insertCR.run('cr-2026-11', 'November 2026', 0, 0, 0, 'No grievances were received during this period.', 202611, '2026-11-01T00:00:00Z', now);
+    insertCR.run('cr-2026-10', 'October 2026', 0, 0, 0, 'No grievances were received during this period.', 202610, '2026-10-01T00:00:00Z', now);
+    insertCR.run('cr-2026-09', 'September 2026', 0, 0, 0, 'No grievances were received during this period.', 202609, '2026-09-01T00:00:00Z', now);
   }
 }
