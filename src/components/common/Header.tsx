@@ -252,8 +252,8 @@ export const Header: React.FC = () => {
                 </button>
               </div>
 
-              {/* 4-Column Broadsheet Directory Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+              {/* 3-Column Broadsheet Directory Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {/* Column 1: Newsroom Reporting Bureaus */}
                 <div className="space-y-4">
                   <div className="border-b-2 border-gray-900 pb-2 flex items-center justify-between">
@@ -330,52 +330,7 @@ export const Header: React.FC = () => {
                   </nav>
                 </div>
 
-                {/* Column 2: Public Data & Coverage Hubs */}
-                <div className="space-y-4">
-                  <div className="border-b-2 border-gray-900 pb-2 flex items-center justify-between">
-                    <h3 className="font-sans font-black text-xs uppercase tracking-wider text-gray-950">
-                      Public Records &amp; Coverage
-                    </h3>
-                    <span className="text-[10px] font-mono text-gray-400">REGISTRY</span>
-                  </div>
-                  <nav className="space-y-1 text-sm font-medium">
-                    <Link
-                      to="/data"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
-                    >
-                      <div>
-                        <div className="font-bold">Primary Data &amp; Evidence</div>
-                        <div className="text-[11px] text-gray-500 font-normal">Original government tenders &amp; RTI</div>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-                    </Link>
-                    <Link
-                      to="/violence"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
-                    >
-                      <div>
-                        <div className="font-bold">Public Safety Watch</div>
-                        <div className="text-[11px] text-gray-500 font-normal">Ground incidents &amp; police filings</div>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-                    </Link>
-                    <Link
-                      to="/persecution"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
-                    >
-                      <div>
-                        <div className="font-bold">Civil Liberties Registry</div>
-                        <div className="text-[11px] text-gray-500 font-normal">Rights and demographic defense</div>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-                    </Link>
-                  </nav>
-                </div>
-
-                {/* Column 3: Institutional Standards & Governance */}
+                {/* Column 2: Institutional Standards & Governance */}
                 <div className="space-y-4">
                   <div className="border-b-2 border-gray-900 pb-2 flex items-center justify-between">
                     <h3 className="font-sans font-black text-xs uppercase tracking-wider text-gray-950">
