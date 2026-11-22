@@ -40,7 +40,6 @@ export const Header: React.FC = () => {
   // Mint top primary navigation tabs
   const primaryTabs = [
     { name: 'Home', path: '/' },
-    { name: 'Latest News', path: '/archive' },
     { name: 'National', path: '/national' },
     { name: 'Economy & Markets', path: '/economy' },
     { name: 'World', path: '/world' },
@@ -58,7 +57,6 @@ export const Header: React.FC = () => {
     { name: 'Supreme Court & Law', path: '/national' },
     { name: 'Parliament & Policy', path: '/national' },
     { name: 'Global Diplomacy', path: '/world' },
-    { name: 'RTI Dossiers', path: '/investigations' },
     { name: 'Heritage & Faith', path: '/society-culture' },
     { name: 'Viral Fact Checks', path: '/fact-check' },
     { name: 'Public Safety', path: '/violence' },
@@ -240,7 +238,7 @@ export const Header: React.FC = () => {
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-xs text-gray-600">
                   <Search className="w-4 h-4 text-gray-400" />
-                  <span className="font-semibold text-gray-900">Search the newsroom archives:</span>
+                  <span className="font-semibold text-gray-900">Search the newsroom:</span>
                   <span className="text-gray-500">Over 50+ investigated stories and constitutional rulings</span>
                 </div>
                 <button
@@ -332,37 +330,15 @@ export const Header: React.FC = () => {
                   </nav>
                 </div>
 
-                {/* Column 2: Judicial Dossiers & Archival Hubs */}
+                {/* Column 2: Public Data & Coverage Hubs */}
                 <div className="space-y-4">
                   <div className="border-b-2 border-gray-900 pb-2 flex items-center justify-between">
                     <h3 className="font-sans font-black text-xs uppercase tracking-wider text-gray-950">
-                      Dossiers &amp; Archives
+                      Public Records &amp; Coverage
                     </h3>
-                    <span className="text-[10px] font-mono text-gray-400">RECORDS</span>
+                    <span className="text-[10px] font-mono text-gray-400">REGISTRY</span>
                   </div>
                   <nav className="space-y-1 text-sm font-medium">
-                    <Link
-                      to="/case-files"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
-                    >
-                      <div>
-                        <div className="font-bold">Judicial Case Files</div>
-                        <div className="text-[11px] text-gray-500 font-normal">FIRs, trials &amp; case tracking</div>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-                    </Link>
-                    <Link
-                      to="/archive"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center justify-between p-2 rounded-lg text-gray-900 hover:bg-gray-100 hover:text-amber-700 transition-colors"
-                    >
-                      <div>
-                        <div className="font-bold">Chronological Archive</div>
-                        <div className="text-[11px] text-gray-500 font-normal">All historical dispatches</div>
-                      </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-                    </Link>
                     <Link
                       to="/data"
                       onClick={() => setIsMenuOpen(false)}

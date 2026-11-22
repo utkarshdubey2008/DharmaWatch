@@ -64,9 +64,6 @@ export const InvestigationsPage: React.FC = () => {
           <span className="text-gray-950 font-extrabold border-b-2 border-gray-950 pb-2.5 shrink-0">
             All Investigations
           </span>
-          <Link to="/case-files" className="text-gray-500 hover:text-gray-900 pb-2.5 shrink-0">
-            Project Dossiers &amp; Trackers
-          </Link>
           <Link to="/data" className="text-gray-500 hover:text-gray-900 pb-2.5 shrink-0">
             Data Journalism &amp; Registries
           </Link>
@@ -269,14 +266,14 @@ export const InvestigationsPage: React.FC = () => {
               </h3>
             </div>
             <div className="space-y-3">
-              <Link to="/case-files/dossier-urban-drainage-procurement-audit" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-amber-500 transition-colors">
+              <Link to="/national" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-amber-500 transition-colors">
                 <span className="text-[10px] font-bold uppercase text-amber-600 block">PUBLIC SPENDING AUDIT</span>
                 <h4 className="font-sans font-bold text-xs sm:text-sm text-gray-900 mt-0.5 leading-snug">
                   Urban Drainage Procurement Audit (₹14,200 Cr)
                 </h4>
                 <span className="text-[11px] text-gray-400 mt-1 block">5 Municipalities • 420 RTI Disclosures</span>
               </Link>
-              <Link to="/case-files/dossier-clean-energy-transmission-grid" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-amber-500 transition-colors">
+              <Link to="/economy" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-amber-500 transition-colors">
                 <span className="text-[10px] font-bold uppercase text-amber-600 block">INFRASTRUCTURE TRACKER</span>
                 <h4 className="font-sans font-bold text-xs sm:text-sm text-gray-900 mt-0.5 leading-snug">
                   National Clean Energy HVDC Grid Corridor

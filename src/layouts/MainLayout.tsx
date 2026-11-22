@@ -16,7 +16,7 @@ export const MainLayout: React.FC = () => {
     { label: 'Home', path: '/', icon: Home },
     { label: 'Markets', path: '/economy', icon: TrendingUp, hasDot: true },
     { label: 'National', path: '/national', icon: Newspaper },
-    { label: 'Dossiers', path: '/investigations', icon: FileText },
+    { label: 'Investigations', path: '/investigations', icon: FileText },
     { label: 'Search', path: '/search', icon: Search },
   ];
 

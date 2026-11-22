@@ -361,7 +361,7 @@ syndicationRouter.get('/sitemap.xml', (_req, res) => {
     }
 
     // Static Institutional Pages
-    const staticPages = ['investigations', 'case-files', 'archive', 'data', 'about', 'editorial-policy', 'corrections', 'contact', 'tips'];
+    const staticPages = ['investigations', 'data', 'about', 'editorial-policy', 'corrections', 'contact', 'tips'];
     for (const p of staticPages) {
       urlsXml += `
   <url>
@@ -415,8 +415,8 @@ ${urlsXml}
 // 6. ROBOTS.TXT DIRECTIVE (/robots.txt)
 // ─────────────────────────────────────────────────────────────────────────────
 syndicationRouter.get('/robots.txt', (_req, res) => {
-  const docsRoute = process.env.DOCS_ROUTE || '/wire-specs-7x9q2p';
-  const content = `# Newsroom Platform Robots Directive
+  const docsRoute = process.env.DOCS_ROUTE || '/wire-specs-8f3a9d';
+  const content = `# DharmaWatch Broadsheet Robots Directive
 User-agent: *
 Allow: /
 Disallow: /admin/

@@ -107,9 +107,9 @@ export const App: React.FC = () => {
 
               {/* Specialized Institutional & Archival Hubs */}
               <Route path="investigations" element={<InvestigationsPage />} />
-              <Route path="case-files" element={<CaseFilesPage />} />
-              <Route path="case-files/:caseId" element={<CaseFileDetailPage />} />
-              <Route path="archive" element={<ArchivePage />} />
+              <Route path="case-files" element={<Navigate to="/investigations" replace />} />
+              <Route path="case-files/:caseId" element={<Navigate to="/investigations" replace />} />
+              <Route path="archive" element={<Navigate to="/" replace />} />
               <Route path="search" element={<SearchPage />} />
               <Route path="data" element={<DataPage />} />
 

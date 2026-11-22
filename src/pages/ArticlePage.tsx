@@ -300,7 +300,7 @@ export const ArticlePage: React.FC = () => {
             {article.tags.map((tag: string) => (
               <Link
                 key={tag}
-                to={`/archive?q=${encodeURIComponent(tag)}`}
+                to={`/search?q=${encodeURIComponent(tag)}`}
                 className="px-2.5 py-1 bg-gray-100 hover:bg-amber-50 hover:text-amber-700 text-gray-700 text-xs rounded-full transition-colors"
               >
                 #{tag}
