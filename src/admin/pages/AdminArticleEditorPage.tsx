@@ -26,6 +26,7 @@ import {
   ShieldAlert,
   Upload,
   Star,
+  Video,
 } from 'lucide-react';
 import { MediaRenderer } from '../../components/common/MediaRenderer';
 import { parseVideoUrl } from '../../utils/mediaUtils';
@@ -110,6 +111,12 @@ export const AdminArticleEditorPage: React.FC = () => {
 
   // Load initial data
   useEffect(() => {
+    // If incoming query params contain auth_token, persist it for instant one-click login
+    const tokenInQuery = searchParams.get('auth_token') || searchParams.get('token');
+    if (tokenInQuery) {
+      localStorage.setItem('dw_admin_token', tokenInQuery);
+    }
+
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -178,6 +185,16 @@ export const AdminArticleEditorPage: React.FC = () => {
     else if (syntax === 'quote') replacement = `\n\n> "${selected || 'Key quote or testimony'}"\n\n`;
     else if (syntax === 'list') replacement = `\n\n- ${selected || 'Bullet item'}\n`;
     else if (syntax === 'link') replacement = `[${selected || 'Source link'}](https://example.com)`;
+    else if (syntax === 'image') {
+      const imgUrl = prompt('Enter Image URL (JPG, PNG, WebP) to embed in story body:');
+      if (!imgUrl) return;
+      const caption = prompt('Enter optional caption for this photo:') || '';
+      replacement = `\n\n![${caption}](${imgUrl.trim()})\n\n`;
+    } else if (syntax === 'video') {
+      const vidUrl = prompt('Enter Video Embed URL (YouTube, Vimeo, or direct MP4 link):');
+      if (!vidUrl) return;
+      replacement = `\n\n${vidUrl.trim()}\n\n`;
+    }
 
     const newContent = text.substring(0, start) + replacement + text.substring(end);
     setContent(newContent);
@@ -579,6 +596,24 @@ export const AdminArticleEditorPage: React.FC = () => {
                     >
                       <Link2 className="w-3.5 h-3.5" />
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => insertMarkdown('image')}
+                      className="shrink-0 p-1.5 text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-xs border border-amber-200 flex items-center gap-1 font-bold text-[11px]"
+                      title="Embed Photo via Image Link"
+                    >
+                      <ImageIcon className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">+ Photo</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertMarkdown('video')}
+                      className="shrink-0 p-1.5 text-red-700 bg-red-50 hover:bg-red-100 rounded-xs border border-red-200 flex items-center gap-1 font-bold text-[11px]"
+                      title="Embed Video (YouTube / Vimeo / MP4)"
+                    >
+                      <Video className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">+ Video</span>
+                    </button>
                   </div>
                 </div>
 
@@ -699,11 +734,20 @@ export const AdminArticleEditorPage: React.FC = () => {
               <div className="prose prose-sm max-w-none text-gray-800 font-sans leading-relaxed whitespace-pre-line space-y-4">
                 {content
                   ? content.split('\n\n').map((paragraph, pIdx) => {
-                      const vCheck = parseVideoUrl(paragraph.trim());
+                      const trimmed = paragraph.trim();
+                      const imgMatch = trimmed.match(/^!\[(.*?)\]\((https?:\/\/.*?|\/.*?)\)$/i);
+                      if (imgMatch) {
+                        return (
+                          <div key={pIdx} className="my-4 rounded-lg overflow-hidden border border-gray-200">
+                            <MediaRenderer url={imgMatch[2]} caption={imgMatch[1]} alt={imgMatch[1] || 'Embedded image'} />
+                          </div>
+                        );
+                      }
+                      const vCheck = parseVideoUrl(trimmed);
                       if (vCheck.isVideo) {
                         return (
                           <div key={pIdx} className="my-3">
-                            <MediaRenderer url={paragraph.trim()} />
+                            <MediaRenderer url={trimmed} />
                           </div>
                         );
                       }

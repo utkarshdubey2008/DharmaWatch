@@ -7,6 +7,7 @@ import { SourceList } from '../components/article/SourceList';
 import { ArticleCard } from '../components/article/ArticleCard';
 import { Clock, Calendar, ChevronLeft, Link as LinkIcon, Bookmark, Share2, Check } from 'lucide-react';
 import { MediaRenderer } from '../components/common/MediaRenderer';
+import { parseVideoUrl } from '../utils/mediaUtils';
 import { formatTimeAgo } from '../utils/dateUtils';
 import { SOCIAL_LINKS, TelegramIcon } from '../components/common/SocialIcons';
 
@@ -282,6 +283,26 @@ export const ArticlePage: React.FC = () => {
                 >
                   {renderFormattedText(trimmed.replace(/^>\s+/, ''))}
                 </blockquote>
+              );
+            }
+
+            // Embedded Image via Markdown ![caption](url)
+            const imgMatch = trimmed.match(/^!\[(.*?)\]\((https?:\/\/.*?|\/.*?)\)$/i);
+            if (imgMatch) {
+              return (
+                <div key={index} className="my-6 rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
+                  <MediaRenderer url={imgMatch[2]} caption={imgMatch[1]} alt={imgMatch[1] || 'Embedded photograph'} />
+                </div>
+              );
+            }
+
+            // Embedded Video via Standalone URL (YouTube, Vimeo, MP4)
+            const videoCheck = parseVideoUrl(trimmed);
+            if (videoCheck.isVideo) {
+              return (
+                <div key={index} className="my-6 rounded-xl overflow-hidden shadow-sm border border-gray-200">
+                  <MediaRenderer url={trimmed} />
+                </div>
               );
             }
 

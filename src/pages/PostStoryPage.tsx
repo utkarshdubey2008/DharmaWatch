@@ -732,6 +732,29 @@ export const PostStoryPage: React.FC = () => {
                     >
                       + Quote
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const imgUrl = prompt('Enter Image URL (JPG, PNG, WebP) to embed:');
+                        if (!imgUrl) return;
+                        const caption = prompt('Enter optional caption for this photo:') || '';
+                        setContent(content + `\n\n![${caption}](${imgUrl.trim()})\n\n`);
+                      }}
+                      className="px-2 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded text-amber-800 font-semibold"
+                    >
+                      + Photo Embed
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const vidUrl = prompt('Enter Video URL (YouTube, Vimeo, or MP4) to embed:');
+                        if (!vidUrl) return;
+                        setContent(content + `\n\n${vidUrl.trim()}\n\n`);
+                      }}
+                      className="px-2 py-1 bg-red-50 hover:bg-red-100 border border-red-200 rounded text-red-800 font-semibold"
+                    >
+                      + Video Embed
+                    </button>
                   </div>
                 </div>
 

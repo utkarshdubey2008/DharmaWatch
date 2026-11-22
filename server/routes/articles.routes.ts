@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { db } from '../db.js';
 import { authenticateToken, requireRole, AuthRequest, logAuditEvent } from '../auth.js';
+import { triggerArticleNotification } from '../articleNotifier.js';
 
 export const articlesRouter = Router();
 
@@ -517,9 +518,14 @@ articlesRouter.post('/quick-post', (req, res) => {
     }
 
     const createdRow = db.prepare('SELECT * FROM articles WHERE id = ?').get(uniqueId);
+    const formattedCreated = formatArticle(createdRow);
+
+    // Push real-time Telegram notification to admin with one-click full editor access
+    triggerArticleNotification(formattedCreated).catch((e) => console.error('[Telegram Quick-Post Push Error]:', e));
+
     res.status(201).json({
       success: true,
-      article: formatArticle(createdRow),
+      article: formattedCreated,
       url: `/${finalCategorySlug}/${slug}`,
     });
   } catch (error: any) {
@@ -725,7 +731,12 @@ articlesRouter.post('/', authenticateToken, (req: AuthRequest, res) => {
   }
 
   const createdRow = db.prepare('SELECT * FROM articles WHERE id = ?').get(uniqueId);
-  res.status(201).json(formatArticle(createdRow));
+  const formattedArticle = formatArticle(createdRow);
+
+  // Push real-time Telegram alert to admin for verification and editing
+  triggerArticleNotification(formattedArticle).catch((e) => console.error('[Telegram Article Push Error]:', e));
+
+  res.status(201).json(formattedArticle);
 });
 
 // 4. PUT /api/articles/:id - Update Article

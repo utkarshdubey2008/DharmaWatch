@@ -8,6 +8,7 @@
 
 import { db } from './db.js';
 import { registerTipNotifier } from './routes/tips.routes.js';
+import { registerArticleNotifier } from './articleNotifier.js';
 import { decryptTipEnvelope } from './cryptoVault.js';
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8783218067:AAFemMe_ZIrURwYfFX1UovEyR-H65W_rufQ';
@@ -145,6 +146,26 @@ registerTipNotifier(async (tip: any) => {
   await broadcastToAdmins(alertText, {
     inline_keyboard: [
       [{ text: '🛡️ Open Whistleblower Queue', callback_data: 'menu_tips' }],
+      [{ text: '🔙 Command Menu', callback_data: 'main_menu' }],
+    ],
+  });
+});
+
+// Register real-time push alert hook for incoming news submissions / quick-posts
+registerArticleNotifier(async ({ article, editUrl }) => {
+  const isPendingReview = (article.status || '').toLowerCase() === 'in_review';
+  const alertText =
+    `🚨 <b>NEWSWIRE DISPATCH SUBMITTED!</b>\n\n` +
+    `<b>Headline:</b> ${article.title}\n` +
+    `<b>Desk:</b> ${article.category || article.category_slug} | <b>Status:</b> <code>${(article.status || 'published').toUpperCase()}</code>\n` +
+    (article.deck ? `<b>Standfirst:</b> <i>"${article.deck.substring(0, 140)}${article.deck.length > 140 ? '...' : ''}"</i>\n` : '') +
+    (article.author_name || article.author?.name ? `<b>Author:</b> ${article.author_name || article.author?.name}\n` : '') +
+    `\n<i>${isPendingReview ? '⚠️ Awaiting editorial verification before publishing.' : '⚡ Submitted via news wire API / publisher desk.'} Open the editor link below to verify, replace images/videos, edit text, and publish.</i>`;
+
+  await broadcastToAdmins(alertText, {
+    inline_keyboard: [
+      [{ text: '📝 Open Full Verification Editor', url: editUrl }],
+      [{ text: '🌐 View Public Wire', url: getTgButtonUrl(`/${article.category_slug || article.categorySlug || 'national'}/${article.slug}`) }],
       [{ text: '🔙 Command Menu', callback_data: 'main_menu' }],
     ],
   });
